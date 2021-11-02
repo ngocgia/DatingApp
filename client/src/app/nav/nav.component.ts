@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
+import { User } from '../_models/user';
 import { AccountService } from '../_services/account.service';
-
 
 @Component({
   selector: 'app-nav',
@@ -10,32 +13,27 @@ import { AccountService } from '../_services/account.service';
 export class NavComponent implements OnInit {
   model: any = {};
   loggedIn: boolean = false;
-
-  constructor(private accountService: AccountService) { }
+  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    this.getCurrentUser();
   }
-
-  login(){
-    this.accountService.login(this.model).subscribe(response =>{
+  login() {
+    this.accountService.login(this.model).subscribe(response => {
       console.log(response);
-      this.loggedIn = true;
-    }, error =>{
-      console.log(error)
-    })
-  }
-
-  logout(){
-    this.accountService.logout();
-    this.loggedIn = false;
-  }
-
-  getCurrentUser(){
-    this.accountService.currentUser$.subscribe(user =>{
-      this.loggedIn = !!user;
+      this.router.navigateByUrl('/members');
     }, error =>{
       console.log(error);
+      this.toastr.error("Tài khoản hoặc mật khẩu không đúng !!😒");
+    });
+  }
+  logout() {
+    this.accountService.logout();
+    this.router.navigateByUrl('/');
+  }
+  getCurrentUser() {
+    this.accountService.currentUser$.subscribe(user => {
+      console.log('get current user: ', user);
+      this.loggedIn = !!user;
     })
   }
 }
