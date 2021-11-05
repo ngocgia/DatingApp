@@ -41,11 +41,12 @@ export class AccountService {
   }
   setCurrentUser(user: User){
     this.currentUserSource.next(user);
+    console.log('userlogin: ',user);
   }
 
   logout(){
     localStorage.removeItem('user');
-    this.currentUserSource.next(undefined);
+    this.currentUserSource.next();
   }
 }
 

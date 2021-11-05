@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   login() {
     this.accountService.login(this.model).subscribe(response => {
       console.log(response);
+      this.toastr.success("Đăng nhập thành công!!😍")
       this.router.navigateByUrl('/members');
     }, error =>{
       console.log(error);
@@ -29,11 +30,13 @@ export class NavComponent implements OnInit {
   logout() {
     this.accountService.logout();
     this.router.navigateByUrl('/');
+
+
   }
   getCurrentUser() {
     this.accountService.currentUser$.subscribe(user => {
-      console.log('get current user: ', user);
-      this.loggedIn = !!user;
+      console.log('get current user: ', user); 
+      this.loggedIn = !!user; 
     })
   }
 }
