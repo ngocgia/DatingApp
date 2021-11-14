@@ -74,23 +74,7 @@ namespace API.Data
         {
             throw new NotImplementedException();
         }
-
-        Task<AppUser> IUserRepository.GetUserByUsernameAsync(string username)
-        {
-            throw new NotImplementedException();
-        }
-
         Task<IEnumerable<AppUser>> IUserRepository.GetUsersAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        Task<bool> IUserRepository.SaveAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        void IUserRepository.Update(AppUser user)
         {
             throw new NotImplementedException();
         }
