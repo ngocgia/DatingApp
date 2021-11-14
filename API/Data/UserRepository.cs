@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace API.Data
 
         public Task<IEnumerable<MemberDto>> GetMembersAsync(string username)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
@@ -71,27 +72,27 @@ namespace API.Data
 
         Task<AppUser> IUserRepository.GetUserByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         Task<AppUser> IUserRepository.GetUserByUsernameAsync(string username)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         Task<IEnumerable<AppUser>> IUserRepository.GetUsersAsync()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         Task<bool> IUserRepository.SaveAllAsync()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         void IUserRepository.Update(AppUser user)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
