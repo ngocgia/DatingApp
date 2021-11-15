@@ -36,10 +36,6 @@ namespace API.Data
                 .ToListAsync();
         }
 
-        public Task<IEnumerable<MemberDto>> GetMembersAsync(string username)
-        {
-            throw new NotImplementedException();
-        }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
         {
@@ -68,15 +64,6 @@ namespace API.Data
         public void Update(AppUser user)
         {
             _context.Entry(user).State = EntityState.Modified;
-        }
-
-        Task<AppUser> IUserRepository.GetUserByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-        Task<IEnumerable<AppUser>> IUserRepository.GetUsersAsync()
-        {
-            throw new NotImplementedException();
         }
     }
 }
