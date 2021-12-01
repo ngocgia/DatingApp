@@ -25,7 +25,6 @@ export class ListComponent implements OnInit {
   loadLikes(){
     this.memberService.getLikes(this.predicate, this.pageNumber, this.pageSize).subscribe(response => {
       this.members = response.result;
-      console.log(this.members);
       this.pagination = response.pagination;
     })
   }
