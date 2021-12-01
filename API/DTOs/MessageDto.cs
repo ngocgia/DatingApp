@@ -4,9 +4,9 @@ namespace API.DTOs
 {
     public class MessageDto
     {
-          public int Id { get; set; }
-        public int SenderId { get; set; }
-        public string SenderUsername { get; set; }
+        public int Id { get; set; } //done
+        public int SenderId { get; set; } //done
+        public string SenderUsername { get; set; } //done
         public string SenderPhotoUrl { get; set; }
         public int RecipientId { get; set; }  // id người nhận
         public string  RecipientUsername { get; set; } //username người nhận

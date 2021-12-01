@@ -19,7 +19,7 @@ namespace API.Data
         public MessageRepository(DataContext context, IMapper mapper)
         {
             _mapper = mapper;
-            _context = context;
+            _context = context; //done
         }
 
         public void AddMessage(Message message)
@@ -50,9 +50,9 @@ namespace API.Data
                 _ => query.Where(u => u.Recipient.UserName == messageParams.Username && u.DateRead == null)
             };
 
-            var message = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
+            var messages = query.ProjectTo<MessageDto>(_mapper.ConfigurationProvider);
 
-            return await PagedList<MessageDto>.CreateAsync(message, messageParams.PageNumber, messageParams.PageSize);
+            return await PagedList<MessageDto>.CreateAsync(messages, messageParams.PageNumber, messageParams.PageSize);
 
         }
 
@@ -85,7 +85,7 @@ namespace API.Data
         }
         public async Task<bool> SaveAllAsync()
         {
-            return await _context.SaveChangesAsync() > 0;
+            return await _context.SaveChangesAsync() > 0; //done
         }
 
     }

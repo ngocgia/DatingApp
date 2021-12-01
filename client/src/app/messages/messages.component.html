@@ -25,7 +25,7 @@
         <tr *ngFor="let message of messages" 
             routerLink='{{container === "Outbox" 
             ? "/members/" + message.recipientUsername
-            : "/members/" + message.senderUsername}}'>
+            : "/members/" + message.senderUsername}}'> 
         <td>{{message.content}}</td>
         <td>
             <div *ngIf="container === 'Outbox'">
@@ -33,7 +33,7 @@
                     class="img-circle rounded-circle mr-2"
                     src="{{message.recipientPhotoUrl || './assets/user.png'}}" 
                     alt="{{message.recipientUsername}}">
-                <strong>{{message.senderUsername |titlecase}}</strong>
+                <strong>{{message.recipientUsername | titlecase}}</strong>
             </div>
             <div *ngIf="container !== 'Outbox'">
                 <img 
@@ -45,7 +45,7 @@
         </td>
         <td>{{message.messageSent | timeago}}</td>
         <td>
-            <button class="btn btn-danger">Delete</button>
+            <button class="btn btn-delete">Delete</button>
         </td>
         </tr>
 

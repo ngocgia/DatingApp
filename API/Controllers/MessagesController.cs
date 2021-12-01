@@ -58,6 +58,7 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessagesForUser([FromQuery] MessageParams messageParams)
         {
             messageParams.Username = User.GetUsername();
+            
             var messages = await _messageRepository.GetMessagesForUser(messageParams);
 
             Response.AddPaginationHeader(messages.CurrentPage, messages.PageSize, messages.TotalCount, messages.TotalPages);
@@ -69,9 +70,8 @@ namespace API.Controllers
        public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageThread(string username)
        {
            var currentUsername = User.GetUsername();
-           var mess = await _messageRepository.GetMessageThread(currentUsername, username);
            
-           return Ok(mess);
+           return Ok(await _messageRepository.GetMessageThread(currentUsername, username));
        }
             
     }

@@ -1,1 +1,3 @@
-<p *ngFor="let message of messages">{{message?.content}}</p>
+<h1 *ngIf="messages">
+    <p *ngFor="let message of messages">{{message?.content}}</p>
+</h1>

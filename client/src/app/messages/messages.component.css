@@ -1,3 +1,12 @@
 .img-circle{
-    max-width: 100px;
+    max-width: 50px;
+}
+.btn-delete{
+    border-radius: 5px;
+    color: #fff;
+    background-color: rgb(214, 50, 50);
+}
+.btn-delete:hover{
+    background-color: red;
+    transition: 0.5s;
 }
