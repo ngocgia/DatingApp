@@ -20,7 +20,7 @@ export class MemberMessagesComponent implements OnInit {
   loadMessages(){
     this.messageService.getMessageThread(this.username).subscribe(messages => {
       this.messages = messages;
-      console.log(this.messages);
+      console.log(messages);
     })
   }
 }

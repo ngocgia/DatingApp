@@ -10,6 +10,7 @@
                         <img src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="message.senderUsername" class="rounded-circle">
                     </span>
                     <div class="chat-body">
+                        <p>{{message.content}}</p>
                         <div class="header">
                             <small class="text-muted">
                                 <span class="fa fa-clock-o">{{message.messageSent | timeago }}</span>
@@ -21,7 +22,7 @@
                                 </span>
                             </small>
                         </div>
-                        <p>{{message.content}}</p>
+                        
                     </div>
                 </div>
             </li>
