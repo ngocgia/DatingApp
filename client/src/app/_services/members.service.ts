@@ -16,6 +16,9 @@ import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
   providedIn: 'root'
 })
 export class MembersService {
+  getMessageThread(username: string) {
+    throw new Error('Method not implemented.');
+  }
   baseUrl = environment.apiUrl;
   members: Member[] = [] ;
   memberCache = new Map();
