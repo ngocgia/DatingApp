@@ -72,7 +72,6 @@ export class MembersService {
     if(member){
       return of(member)
     }
-    // console.log(member);
     return this.http.get<Member>(this.baseUrl + 'users/'+ username)
   }
 
