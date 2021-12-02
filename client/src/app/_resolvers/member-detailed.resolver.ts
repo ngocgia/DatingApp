@@ -5,8 +5,6 @@ import { Member } from "../_models/member";
 import { MembersService } from "../_services/members.service";
 
 
-
-
 //resolver : người giải quyết
 @Injectable({
     providedIn: 'root'
