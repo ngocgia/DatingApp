@@ -17,4 +17,16 @@
     text-align: center;
 }
 
+.image_outer_container{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    position: relative;
+}
+.image_inner_container img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    border: 5px solid white;
+}
     
