@@ -1,9 +1,20 @@
 .dropdown-toggl, .dropdown-item{
  cursor: pointer;
 }
-img{
-    max-height: 40px;
-    border: 2px solid #fff;
+.logo{
+    width: 30px;
+    height: 30px;
+}
+.translate{
+    color: #fff;
+}
+.fa .fa-globe{
+    width: 50px;
+    font-size: 30px;
+}
+.avatar{
+    border: #fff;
     border-radius: 50%;
-    display: inline;
+    width: 35px;
+    height: 35px;
 }
