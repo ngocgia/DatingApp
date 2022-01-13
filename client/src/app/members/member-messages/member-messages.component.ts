@@ -13,6 +13,7 @@ export class MemberMessagesComponent implements OnInit {
   @Input() messages: Message[] = [] ;
   @Input() username: string = "";
   messageContent: string = "";
+  showEmojiPicker = false;
 
   constructor(public messageService: MessageService) { }
 
@@ -24,5 +25,15 @@ export class MemberMessagesComponent implements OnInit {
     this.messageService.sendMessage(this.username, this.messageContent).then(() => {
       this.messageForm.reset();
     })
+  }
+  toggleEmojiPicker(){
+    this.showEmojiPicker = !this.showEmojiPicker;
+  }
+  addEmoji(event:any) {
+    const { messageContent } = this;
+    const text = `${messageContent}${event.emoji.native}`;
+
+    this.messageContent = text;
+    this.showEmojiPicker = false;
   }
 }

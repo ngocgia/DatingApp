@@ -37,6 +37,9 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 // translate
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+import { IconsModule } from './icons/icons.module';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -76,13 +79,16 @@ export function HttpLoaderFactory(http: HttpClient) {
     ReactiveFormsModule,
     SharedModule,
     NgxSpinnerModule,
+    IconsModule,
+    PickerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
     }
-    })
+    }),
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

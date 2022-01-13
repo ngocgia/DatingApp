@@ -30,8 +30,12 @@
     </div>
 
     <div class="card-footer">
+      
         <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
             <div class="input-group">
+                <button type="button"
+                class="toggle-emoji btn btn-primary"
+                (click)="toggleEmojiPicker()"><i-feather name="Smile" class="someclass"></i-feather></button> 
                 <input 
                     name="messageContent"
                     required
@@ -40,9 +44,14 @@
                     class="form-control input-sm" 
                     placeholder="Send a private message">
                 <div class="input-group-append">
-                    <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit">send</button>
+                    <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit">
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
+            <emoji-mart class="emoji-mart" 
+                set="google" (emojiSelect)="addEmoji($event)" 
+                *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>
         </form>
     </div>
 </div>

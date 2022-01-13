@@ -21,3 +21,9 @@ li{
 .rounded-circle{
     max-height: 50px;
 }
+.emoji-mart{
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    z-index: 1000;
+}
