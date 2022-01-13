@@ -7,20 +7,20 @@
     <ul class="navbar-nav mr-auto">
       <ng-container *ngIf="accountService.currentUser$ | async">
         <li class="nav-item ">
-          <a class="nav-link " routerLink='/members' routerLinkActive='active'>Matches</a>
+          <a class="nav-link " routerLink='/members' routerLinkActive='active'>{{'navbar.matches' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink='/lists' routerLinkActive='active'>List</a>
+          <a class="nav-link" routerLink='/lists' routerLinkActive='active'>{{'navbar.list' | translate}}</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink='/messages' routerLinkActive='active'>Message</a>
+          <a class="nav-link" routerLink='/messages' routerLinkActive='active'>{{'navbar.message' | translate}}</a>
         </li>
         <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
           <a class="nav-link" routerLink='/admin' routerLinkActive='active'>Admin</a>
         </li>
       </ng-container>
       <li class="nav-item">
-        <a class="nav-link" routerLink='/errors' routerLinkActive='active'>Errors</a>
+        <a class="nav-link" routerLink='/errors' routerLinkActive='active'>{{'navbar.error' | translate}}</a>
       </li>
     </ul>
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
@@ -29,6 +29,23 @@
       <div class="dropdown-menu" *dropdownMenu>
         <a class="dropdown-item" routerLink='/member/edit'>
           Edit Profile
+        </a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item">
+          <div class="btn-group" dropdown>
+            <div class="translate">
+             <a class="translate dropdown-toggle" dropdownToggle aria-controls="dropdown-animated">
+              Languages
+               <span class="caret"></span>
+             </a>
+            </div>
+           <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+               role="menu" aria-labelledby="button-animated">
+             <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('vn')">
+               <img src="./assets/vn.svg" alt=""> Việt Nam</a></li>
+             <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('en')"><img src="./assets/en.svg" alt=""> English</a></li>
+           </ul>
+         </div>
         </a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()">
@@ -46,19 +63,6 @@
       <button class="btn btn-success my-2 my-sm-0" type="submit">Login</button>
     </form>
 
-    <div class="btn-group ml-4" dropdown>
-       <div class="translate">
-        <a class="translate dropdown-toggle" dropdownToggle aria-controls="dropdown-animated">
-          <i class="fa fa-globe"></i>
-          <span class="caret"></span>
-        </a>
-       </div>
-      <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
-          role="menu" aria-labelledby="button-animated">
-        <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('vn')">
-          <img src="./assets/vn.svg" alt=""> Việt Nam</a></li>
-        <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('en')"><img src="./assets/en.svg" alt=""> English</a></li>
-      </ul>
-    </div>
+   
   </div>
 </nav>

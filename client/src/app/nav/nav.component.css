@@ -18,3 +18,9 @@
     width: 35px;
     height: 35px;
 }
+.translate {
+    color: black;
+}
+.translate a{
+   text-decoration: none;
+}

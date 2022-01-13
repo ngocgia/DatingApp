@@ -16,7 +16,6 @@ import { MembersService } from '../_services/members.service';
 export class NavComponent implements OnInit {
   model: any = {};
   loggedIn: boolean = false;
-
   constructor(public accountService: AccountService, private router: Router,
      private toastr: ToastrService, private translate: TranslateService) {
        translate.setDefaultLang("en");
@@ -24,6 +23,7 @@ export class NavComponent implements OnInit {
       }
 
   ngOnInit(): void {
+  
   }
   login() {
     this.accountService.login(this.model).subscribe(response => {
