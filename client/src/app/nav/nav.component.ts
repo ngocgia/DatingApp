@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { Member } from '../_models/member';
@@ -15,10 +16,14 @@ import { MembersService } from '../_services/members.service';
 export class NavComponent implements OnInit {
   model: any = {};
   loggedIn: boolean = false;
-
-  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
+  constructor(public accountService: AccountService, private router: Router,
+     private toastr: ToastrService, private translate: TranslateService) {
+       translate.setDefaultLang("en");
+       translate.use("vn");
+      }
 
   ngOnInit(): void {
+  
   }
   login() {
     this.accountService.login(this.model).subscribe(response => {
@@ -41,6 +46,9 @@ export class NavComponent implements OnInit {
       console.log('get current user: ', user); 
       this.loggedIn = !!user; 
     })
-   
+  }
+
+  switchLanguage(language: string){
+    this.translate.use(language);
   }
 }

@@ -1,0 +1,12 @@
+{
+    "login" : {
+        "username": "Username",
+        "password": "Password"
+    },
+    "navbar" : {
+        "matches" : "Matches",
+        "list" : "List",
+        "message": "Message",
+        "error": "Error"
+    }
+}

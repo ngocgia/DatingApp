@@ -1,0 +1,12 @@
+{
+    "login" : {
+        "username": "Tên đăng nhập",
+        "password": "Mật khẩu"
+    },
+    "navbar" : {
+        "matches" : "Khám phá",
+        "list" : "Danh sách",
+        "message": "Tin nhắn",
+        "error": "Lỗi"
+    }
+}
