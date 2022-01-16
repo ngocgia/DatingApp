@@ -18,8 +18,8 @@ export class NavComponent implements OnInit {
   loggedIn: boolean = false;
   constructor(public accountService: AccountService, private router: Router,
      private toastr: ToastrService, private translate: TranslateService) {
-       translate.setDefaultLang("en");
-       translate.use("vn");
+       translate.setDefaultLang("vn");
+       translate.use("en");
       }
 
   ngOnInit(): void {
