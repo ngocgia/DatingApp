@@ -1,14 +1,26 @@
-img.img-thumbnail{
+img.img-thumbnail {
     height: 100px;
     min-width: 100px !important;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
-.nv-file-over{
+.nv-file-over {
     border: dotted 3px red;
 }
 
-input[tyle=file]{
+input[type=file] {
     color: transparent;
-    display: none;
+}
+
+.not-approved {
+    opacity: 0.2;
+}
+
+.img-wrapper {
+    position: relative
+}
+
+.img-text {
+    position: absolute;
+    bottom: 30%;
 }
