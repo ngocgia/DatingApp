@@ -12,6 +12,7 @@ import { MembersService } from 'src/app/_services/members.service';
 import { MessageService } from 'src/app/_services/message.service';
 import { PresenceService } from 'src/app/_services/presence.service';
 
+
 @Component({
   selector: 'app-member-detail',
   templateUrl: './member-detail.component.html',
