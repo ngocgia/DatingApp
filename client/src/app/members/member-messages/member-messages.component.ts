@@ -2,7 +2,6 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message } from 'src/app/_models/message';
 import { MessageService } from 'src/app/_services/message.service';
-
 @Component({
   selector: 'app-member-messages',
   templateUrl: './member-messages.component.html',
@@ -14,6 +13,9 @@ export class MemberMessagesComponent implements OnInit {
   @Input() username: string = "";
   messageContent: string = "";
   showEmojiPicker = false;
+
+
+
   
   constructor(public messageService: MessageService) { }
 
@@ -41,5 +43,15 @@ export class MemberMessagesComponent implements OnInit {
       this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
     })
   }
- 
+  
+  clickFile(){
+    document.getElementById("file_attach_upload")?.click();
+  
+  }
+  clickImage(){
+    document.getElementById("image_attach_upload")?.click();
+  }
+
+  
+  
 }

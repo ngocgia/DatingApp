@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-body">
+    <div #scroll [scrollTop]="scroll.scrollHeight" class="card-body">
         <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
             Không có tin nhắn...
         </div>
@@ -29,9 +29,9 @@
             </li>
         </ul>
     </div>
-
     <div class="card-footer">
-      
+        <button (click)="clickFile()" class="btn btn-primary"><i class="fa fa-paperclip"></i></button>
+        <button (click)="clickImage()" class="btn btn-primary"><i class="fa fa-camera"></i></button>
         <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
             <div class="input-group">
                 <button type="button"
@@ -53,6 +53,10 @@
             <emoji-mart class="emoji-mart" 
                 set="google" (emojiSelect)="addEmoji($event)" 
                 *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>
+            <input type='file' [hidden]="true" id="file_attach_upload"
+                accept=".xlsx,.xls,.csv,.doc,.docx">
+            <input type='file' [hidden]="true" id="image_attach_upload"
+                accept=".gif,.jpg,.jpeg,.png">
         </form>
     </div>
 </div>
