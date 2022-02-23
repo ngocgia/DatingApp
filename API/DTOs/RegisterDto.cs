@@ -23,6 +23,8 @@ namespace API.DTOs
         [Required]
         public string Country{ get; set; }
 
+        [Required]
+        public string Interests { get; set; }
 
         [Required]
         [StringLength(8, MinimumLength = 4)]

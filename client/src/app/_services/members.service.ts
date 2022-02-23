@@ -16,9 +16,6 @@ import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
   providedIn: 'root'
 })
 export class MembersService {
-  // getMessageThread(username: string) {
-  //   throw new Error('Method not implemented.');
-  // }
   baseUrl = environment.apiUrl;
   members: Member[] = [] ;
   memberCache = new Map();
@@ -55,6 +52,7 @@ export class MembersService {
     params = params.append('minAge', userParams.minAge.toString());
     params = params.append('maxAge', userParams.maxAge.toString());
     params = params.append('gender', userParams.gender);
+    params = params.append('interests', userParams.interests);
     params = params.append('orderBy', userParams.orderBy);
 
 
