@@ -119,5 +119,21 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Policy = "RequireAdminRole")]
+        [HttpDelete("delete-user/{username}")]
+        public async Task<ActionResult> DeleteUser(string username)
+        {
+            var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+
+            if(user == null) return BadRequest("Not found user");
+            if(user != null)
+            {
+                 _unitOfWork.UserRepository.Remove(user);
+                 await _unitOfWork.Complete();
+                 return Ok();
+            }
+            return BadRequest("Delete error");
+        }
+
     }
 }

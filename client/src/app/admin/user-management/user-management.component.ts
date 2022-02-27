@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { RolesModalComponent } from 'src/app/modals/roles-modal/roles-modal.component';
+import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
 import { AdminService } from 'src/app/_services/admin.service';
 
@@ -22,6 +23,7 @@ export class UserManagementComponent implements OnInit {
   getUsersWithRoles() {
     this.adminService.getUsersWithRoles().subscribe(users => {
       this.users = users;
+      
     })
   }
 
@@ -71,6 +73,12 @@ export class UserManagementComponent implements OnInit {
       }
     })
     return roles;
+  }
+
+  deleteUser(username: string){
+    this.adminService.deleteUser(username).subscribe(()=> {
+      this.users?.splice(this.users.findIndex(x => x?.username === username), 1);
+    });
   }
 
 }
