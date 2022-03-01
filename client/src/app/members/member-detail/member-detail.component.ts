@@ -98,5 +98,10 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       this.toastr.success("Bạn đã LIKE " + member.knownAs);
     })
   }
+  addBlock(member: Member) {
+    this.memberService.addBlock(member.username).subscribe(()=>{
+      this.toastr.success("Bạn đã BLOCK " + member.knownAs);
+    })
+  }
 
 }

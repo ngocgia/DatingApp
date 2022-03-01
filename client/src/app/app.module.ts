@@ -39,6 +39,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { IconsModule } from './icons/icons.module';
+import { BlocksComponent } from './blocks/blocks.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -68,7 +69,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     HasRoleDirective,
     UserManagementComponent,
     PhotoManagementComponent,
-    RolesModalComponent
+    RolesModalComponent,
+    BlocksComponent
   ],
   imports: [
     BrowserModule,

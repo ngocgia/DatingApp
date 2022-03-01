@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace API.Data.Migrations
 {
-    public partial class PostgresInitial : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -177,6 +177,30 @@ namespace API.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Blocks",
+                columns: table => new
+                {
+                    SourceUserId = table.Column<int>(type: "integer", nullable: false),
+                    BlockedUserId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Blocks", x => new { x.SourceUserId, x.BlockedUserId });
+                    table.ForeignKey(
+                        name: "FK_Blocks_AspNetUsers_BlockedUserId",
+                        column: x => x.BlockedUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Blocks_AspNetUsers_SourceUserId",
+                        column: x => x.SourceUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Likes",
                 columns: table => new
                 {
@@ -313,6 +337,11 @@ namespace API.Data.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Blocks_BlockedUserId",
+                table: "Blocks",
+                column: "BlockedUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Connections_GroupName",
                 table: "Connections",
                 column: "GroupName");
@@ -354,6 +383,9 @@ namespace API.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Blocks");
 
             migrationBuilder.DropTable(
                 name: "Connections");

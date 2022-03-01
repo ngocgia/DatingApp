@@ -258,6 +258,21 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("API.Entities.UserBlocks", b =>
+                {
+                    b.Property<int>("SourceUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BlockedUserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SourceUserId", "BlockedUserId");
+
+                    b.HasIndex("BlockedUserId");
+
+                    b.ToTable("Blocks");
+                });
+
             modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
                     b.Property<int>("SourceUserId")
@@ -415,6 +430,25 @@ namespace API.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("API.Entities.UserBlocks", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "BlockedUser")
+                        .WithMany("BlockedByUsers")
+                        .HasForeignKey("BlockedUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.AppUser", "SourceUser")
+                        .WithMany("BlockedUsers")
+                        .HasForeignKey("SourceUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BlockedUser");
+
+                    b.Navigation("SourceUser");
+                });
+
             modelBuilder.Entity("API.Entities.UserLike", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "LikedUser")
@@ -477,6 +511,10 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
+                    b.Navigation("BlockedByUsers");
+
+                    b.Navigation("BlockedUsers");
+
                     b.Navigation("LikedByUsers");
 
                     b.Navigation("LikedUsers");

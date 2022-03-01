@@ -15,6 +15,9 @@
         <li class="nav-item">
           <a class="nav-link" routerLink='/messages' routerLinkActive='active'>{{'navbar.message' | translate}}</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink='/blocks' routerLinkActive='active'>Blocks</a>
+        </li>
         <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
           <a class="nav-link" routerLink='/admin' routerLinkActive='active'>Admin</a>
         </li>
