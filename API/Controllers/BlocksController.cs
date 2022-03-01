@@ -22,28 +22,28 @@ namespace API.Controllers
         [HttpPost("{username}")]
         public async Task<ActionResult> AddBlock(string username)
         {
-            var sourceUserId = User.GetUserId();
-            var blockedUser = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
-            var sourceUser = await _unitOfWork.BlocksRepository.GetUserWithBlock(sourceUserId);
+                var sourceUserId = User.GetUserId();
+                var blockedUser = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+                var sourceUser = await _unitOfWork.BlocksRepository.GetUserWithBlock(sourceUserId);
 
-            if (blockedUser == null) return NotFound();
+                if (blockedUser == null) return NotFound();
 
-            if (sourceUser.UserName == username) return BadRequest("You cannot block yourself");
+                if (sourceUser.UserName == username) return BadRequest("You cannot like yourself");
 
-            var userBlock = await _unitOfWork.BlocksRepository.GetUserBlocks(sourceUserId, blockedUser.Id);
+                var userBlock = await _unitOfWork.BlocksRepository.GetUserBlocks(sourceUserId, blockedUser.Id);
 
-            if (userBlock != null) return BadRequest("You already block this user");
+                if (userBlock != null) return BadRequest("You already like this user");
 
-            userBlock = new UserBlocks
-            {
-                SourceUserId = sourceUserId,
-                BlockedUserId = blockedUser.Id
-            };
+                userBlock = new UserBlocks
+                {
+                    SourceUserId = sourceUserId,
+                    BlockedUserId = blockedUser.Id
+                };
 
-            sourceUser.BlockedUsers.Add(userBlock);
+                sourceUser.BlockedUser.Add(userBlock);
 
-            if (await _unitOfWork.Complete()) return Ok();
-
+                if (await _unitOfWork.Complete()) return Ok();
+            
             return BadRequest("Failed to like user");
         }
 

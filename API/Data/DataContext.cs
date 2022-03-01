@@ -62,13 +62,13 @@ namespace API.Data
 
             builder.Entity<UserBlocks>()
                 .HasOne(s => s.SourceUser)
-                .WithMany(l => l.BlockedUsers)
+                .WithMany(l => l.BlockedUser)
                 .HasForeignKey(s => s.SourceUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<UserBlocks>()
                 .HasOne(s => s.BlockedUser)
-                .WithMany(l => l.BlockedByUsers)
+                .WithMany(l => l.BlockedByUser)
                 .HasForeignKey(s => s.BlockedUserId)
                 .OnDelete(DeleteBehavior.Cascade);
             // ================

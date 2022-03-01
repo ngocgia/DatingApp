@@ -56,7 +56,7 @@ namespace API.Data
         public async Task<AppUser> GetUserWithBlock(int userId)
         {
             return await _context.Users
-                .Include(x => x.LikedUsers)
+                .Include(x => x.BlockedUser)
                 .FirstOrDefaultAsync(x => x.Id == userId);
         }
     }
