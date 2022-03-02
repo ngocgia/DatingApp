@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { ToastrService } from 'ngx-toastr';
+import { Google } from '../_models/google';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -47,7 +48,13 @@ export class LoginComponent implements OnInit {
   loginWithGoogle(): void {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).
     then( res => {
+      const user: SocialUser = { ...res };
       console.log(res);
+      const googleAuth: Google = {
+        provider: user.provider,
+        idToken: user.idToken
+      }
+      this.accountService.validateGoogleAuth(googleAuth);
     }).catch(e => {
       console.log(e);
     });

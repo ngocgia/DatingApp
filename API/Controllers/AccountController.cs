@@ -39,8 +39,8 @@ namespace API.Controllers
 
             var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-            if(!result.Succeeded) return BadRequest(result.Errors);
-            
+            if (!result.Succeeded) return BadRequest(result.Errors);
+
             var roleResult = await _userManager.AddToRoleAsync(user, "Member");
 
             if (!roleResult.Succeeded) return BadRequest(result.Errors);
@@ -64,7 +64,7 @@ namespace API.Controllers
 
             var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-            if(!result.Succeeded) return Unauthorized();
+            if (!result.Succeeded) return Unauthorized();
 
             return new UserDto
             {
@@ -78,6 +78,59 @@ namespace API.Controllers
         private async Task<bool> UserExists(string username)
         {
             return await _userManager.Users.AnyAsync(x => x.UserName == username.ToLower());
+        }
+
+
+        [HttpPost("google-login")]
+        public async Task<IActionResult> GooleLogin([FromBody] GoogleAuthDto googleAuth)
+        {
+            try
+            {
+                var payload = await _tokenService.VerifyGoogleToken(googleAuth);
+                if (payload == null)
+                    return BadRequest("Invalid External Authentication.");
+
+                var info = new UserLoginInfo(googleAuth.Provider, payload.Subject, googleAuth.Provider);
+
+                var user = await _userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+                if (user == null)
+                {
+                    user = await _userManager.FindByEmailAsync(payload.Email);
+
+                    if (user == null)
+                    {
+                        user = new AppUser { KnownAs = payload.Name, UserName = payload.Email };
+                        await _userManager.CreateAsync(user);
+
+                        //prepare and send an email for the email confirmation
+
+                        await _userManager.AddToRoleAsync(user, "Member");
+                        await _userManager.AddLoginAsync(user, info);
+                    }
+                    else
+                    {
+                        await _userManager.AddLoginAsync(user, info);
+                    }
+                }
+
+                if (user == null)
+                    return BadRequest("Invalid External Authentication.");
+
+                return Ok(new UserDto
+                {
+                    Username = user.UserName,
+                    Token = await _tokenService.CreateToken(user),
+                    PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                    KnownAs = user.KnownAs,
+                    Gender = user.Gender,
+                });
+
+            }
+            catch (System.Exception)
+            {
+
+                return BadRequest("sai roi");
+            }
         }
     }
 }

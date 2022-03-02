@@ -5,8 +5,10 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using Google.Apis.Auth;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -17,13 +19,15 @@ namespace API.Services
     {
         private readonly SymmetricSecurityKey _key;
         private readonly UserManager<AppUser> _userManager;
+        private readonly IConfiguration _goolgeSettings;
         public TokenService(IConfiguration config, UserManager<AppUser> userManager)
         {
             _userManager = userManager;
+            _goolgeSettings = config.GetSection("GoogleAuthSettings");
             _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
         }
 
-        public async Task<string>  CreateToken(AppUser user)
+        public async Task<string> CreateToken(AppUser user)
         {
             var claims = new List<Claim>
             {
@@ -49,6 +53,25 @@ namespace API.Services
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
+        }
+
+        public async Task<GoogleJsonWebSignature.Payload> VerifyGoogleToken(GoogleAuthDto googleAuth)
+        {
+            try
+            {
+                var settings = new GoogleJsonWebSignature.ValidationSettings()
+                {
+                    Audience = new List<string>() { _goolgeSettings.GetSection("clientId").Value }
+                };
+
+                var payload = await GoogleJsonWebSignature.ValidateAsync(googleAuth.IdToken, settings);
+                return payload;
+            }
+            catch (Exception ex)
+            {
+                //log an exception
+                return null;
+            }
         }
     }
 }

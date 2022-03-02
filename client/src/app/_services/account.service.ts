@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Google } from '../_models/google';
 import { User } from '../_models/user';
 import { PresenceService } from './presence.service';
 @Injectable({
@@ -55,6 +56,11 @@ export class AccountService {
 
   getDecodedToken(token: string){
     return JSON.parse(atob(token.split('.')[1]));
+  }
+
+  validateGoogleAuth(google: Google) {
+    this.http.post(this.baseUrl + "account/google-login", google)
+      .subscribe();
   }
 }
 
