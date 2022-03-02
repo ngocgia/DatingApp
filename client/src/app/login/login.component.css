@@ -1,11 +1,13 @@
 #logreg-forms{
-    width:412px;
+    width:70%;
+    max-height: 100%;
     margin:10vh auto;
-    background-color:#fff;
+    background-image: linear-gradient(to right, #f6c6f8, #e9e9e9);
+    border-radius: 20px;
 }
 #logreg-forms form {
     width: 100%;
-    max-width: 410px;
+    max-width: 400px;
     padding: 15px;
     margin: auto;
 }
@@ -56,8 +58,6 @@
 
 #logreg-forms .google-btn{ background-color: #DF4B3B; }
 
-/* #logreg-forms .form-reset, #logreg-forms .form-signup{ display: none; } */
-
 #logreg-forms .form-signup .social-btn{ width:210px; }
 
 #logreg-forms .form-signup input { margin-bottom: 2px;}
@@ -67,7 +67,6 @@
     margin: 0 auto;
 }
 
-/* Mobile */
 
 @media screen and (max-width:500px){
     #logreg-forms{
@@ -102,3 +101,9 @@
     }
     
 }
+.form-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+

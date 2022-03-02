@@ -1,6 +1,11 @@
 
- <div id="logreg-forms">
-  <form #loginForm="ngForm" class="form-signin"
+ <div class="form-login" id="logreg-forms">
+  <div class="img">
+    <img src="../../assets/image.png" alt="">
+  </div>
+  <span class=""></span>
+  <div class="edit-form">
+    <form #loginForm="ngForm" class="form-signin"
         *ngIf="(accountService.currentUser$ | async) == null"
         (ngSubmit)="login()" autocomplete="off">
       <h1 class="mb-3 font-weight-normal" style="text-align: center">Login</h1>
@@ -21,5 +26,8 @@
         <button class="btn google-btn social-btn" (click)="loginWithGoogle()" type="button"><span> Login with Google+</span> </button>
       </div>
   </form>
-  <br>    
+  </div>
+  <br> 
 </div>
+
+

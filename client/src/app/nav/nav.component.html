@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light fixed-top bg-info">
+<nav class="color-navbar navbar navbar-expand-md navbar-light fixed-top">
   <div class="container">
     <a class="navbar-brand" routerLink='/' routerLinkActive='active'>
       <img class="logo" src="./tim.png" alt="">
@@ -28,7 +28,7 @@
     </ul>
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
       <img class="avatar" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
-      <a class="dropdown-toggle text-light ml-2" dropdownToggle>{{user.knownAs || user.username | titlecase}}</a>
+      <a class="dropdown-toggle text-secondary ml-2" dropdownToggle>{{user.knownAs || user.username | titlecase}}</a>
       <div class="dropdown-menu" *dropdownMenu>
         <a class="dropdown-item" routerLink='/member/edit'>
           Edit Profile
