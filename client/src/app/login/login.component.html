@@ -1,0 +1,25 @@
+
+ <div id="logreg-forms">
+  <form #loginForm="ngForm" class="form-signin"
+        *ngIf="(accountService.currentUser$ | async) == null"
+        (ngSubmit)="login()" autocomplete="off">
+      <h1 class="mb-3 font-weight-normal" style="text-align: center">Login</h1>
+      <hr>
+      <input name="username" [(ngModel)]="model.username" class="form-control" type="text"
+        placeholder="Username">
+      <input name="password" [(ngModel)]="model.password" class="form-control mt-2" type="password"
+        placeholder="Password">
+
+      <div class="form-group text-center mt-2">
+          <button  class="btn btn-success mr-2" type="submit">Login</button>
+          <button class="btn btn-primary" routerLink='/' type="button">Cancel</button>
+      </div>
+      <hr>
+      <p style="text-align:center"> OR  </p>
+      <div class="social-login">
+        <button class="btn facebook-btn social-btn" type="button"><span> Login with Facebook</span> </button>
+        <button class="btn google-btn social-btn" type="button"><span> Login with Google+</span> </button>
+      </div>
+  </form>
+  <br>    
+</div>

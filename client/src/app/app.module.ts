@@ -40,6 +40,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { IconsModule } from './icons/icons.module';
 import { BlocksComponent } from './blocks/blocks.component';
+import { LoginComponent } from './login/login.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -70,7 +71,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UserManagementComponent,
     PhotoManagementComponent,
     RolesModalComponent,
-    BlocksComponent
+    BlocksComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
