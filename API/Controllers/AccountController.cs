@@ -115,14 +115,16 @@ namespace API.Controllers
 
                 if (user == null)
                     return BadRequest("Invalid External Authentication.");
+                var token = await _tokenService.CreateToken(user);
 
+             
                 return Ok(new UserDto
                 {
                     Username = user.UserName,
-                    Token = await _tokenService.CreateToken(user),
-                    PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
-                    KnownAs = user.KnownAs,
-                    Gender = user.Gender,
+                    Token = token,
+                    // PhotoUrl = user.Photos.FirstOrDefault(x => x.IsMain)?.Url,
+                    // KnownAs = user.KnownAs,
+                    // Gender = user.Gender,
                 });
 
             }

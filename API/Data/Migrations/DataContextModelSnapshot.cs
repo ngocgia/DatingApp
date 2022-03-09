@@ -433,13 +433,13 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.UserBlocks", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "BlockedUser")
-                        .WithMany("BlockedByUsers")
+                        .WithMany("BlockedByUser")
                         .HasForeignKey("BlockedUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("API.Entities.AppUser", "SourceUser")
-                        .WithMany("BlockedUsers")
+                        .WithMany("BlockedUser")
                         .HasForeignKey("SourceUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -511,9 +511,9 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.AppUser", b =>
                 {
-                    b.Navigation("BlockedByUsers");
+                    b.Navigation("BlockedByUser");
 
-                    b.Navigation("BlockedUsers");
+                    b.Navigation("BlockedUser");
 
                     b.Navigation("LikedByUsers");
 

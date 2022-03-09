@@ -67,7 +67,7 @@ namespace API.Services
                 var payload = await GoogleJsonWebSignature.ValidateAsync(googleAuth.IdToken, settings);
                 return payload;
             }
-            catch (Exception ex)
+            catch (System.Exception)
             {
                 //log an exception
                 return null;
