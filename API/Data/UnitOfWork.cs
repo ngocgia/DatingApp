@@ -22,6 +22,7 @@ namespace API.Data
         public IBlocksRepository BlocksRepository => new BlocksRepository(_context);
 
         public IPhotoRepository PhotoRepository => new PhotoRepository(_context);
+        public IBlogsRepository BlogsRepository => new BlogsRepository(_context);
 
         public async Task<bool> Complete()
         {

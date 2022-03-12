@@ -44,6 +44,11 @@ import { LoginComponent } from './login/login.component';
 
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
+import { BlogsListComponent } from './blogs/blogs-list/blogs-list.component';
+import { BlogComponent } from './blogs/blog/blog.component';
+import { BlogFormComponent } from './blogs/blog-form/blog-form.component';
+import { BlogCardComponent } from './blogs/blog-card/blog-card.component';
+import { SafePipe } from './_pipe/safe.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -74,7 +79,12 @@ export function HttpLoaderFactory(http: HttpClient) {
     PhotoManagementComponent,
     RolesModalComponent,
     BlocksComponent,
-    LoginComponent
+    LoginComponent,
+    BlogsListComponent,
+    BlogComponent,
+    BlogFormComponent,
+    BlogCardComponent,
+    SafePipe
   ],
   imports: [
     SocialLoginModule,

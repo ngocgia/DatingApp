@@ -23,6 +23,7 @@ namespace API.Data
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
+        public DbSet<Blogs> Blogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
