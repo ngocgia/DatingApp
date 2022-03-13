@@ -1,1 +1,40 @@
-<p>blog-form works!</p>
+<h2 class="text-center text-primary">Create Blog</h2>
+<hr />
+<form
+  [formGroup]="blogForm"
+  (ngSubmit)="blogForm.valid && createBlog()"
+  autocomplete="off"
+>
+
+  <app-text-input 
+  [formControl]="$any(blogForm.controls['title'])" 
+  [label]='"Title"' ></app-text-input>
+
+  <div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    <ngx-editor
+      [formControl]="$any(blogForm.controls['content'])"
+      [editor]="editor"
+      [placeholder]="'Type here...'"
+    ></ngx-editor>
+  </div>
+
+  <div class="row mt-5" *ngIf="validationErrors.length > 0">
+    <ul class="text-danger">
+      <li *ngFor="let error of validationErrors">{{ error }}</li>
+    </ul>
+  </div>
+
+  <div class="form-group text-center mt-5">
+    <button
+      [disabled]="!blogForm.valid"
+      class="btn btn-success mr-2"
+      type="submit"
+    >
+      Create
+    </button>
+    <button class="btn btn-primary mr-2" (click)="cancel()" type="button">
+      Cancel
+    </button>
+  </div>
+</form>

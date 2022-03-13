@@ -1,63 +1,73 @@
-<nav class="color-navbar navbar navbar-expand-md navbar-light fixed-top">
-  <div class="container">
+<nav class="color-navbar navbar navbar-expand-lg" id="mainNav">
+  <div class="container px-4 px-lg-5">
     <a class="navbar-brand" routerLink='/' routerLinkActive='active'>
       <img class="logo" src="./tim.png" alt="">
       Dating App
     </a>
-    <ul class="navbar-nav mr-auto">
-      <ng-container *ngIf="accountService.currentUser$ | async">
-        <li class="nav-item ">
-          <a class="nav-link " routerLink='/members' routerLinkActive='active'>{{'navbar.matches' | translate}}</a>
-        </li>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav mr-auto py-4 py-lg-0">
+        <ng-container *ngIf="accountService.currentUser$ | async">
+          <li class="nav-item ">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/members' routerLinkActive='active'>{{'navbar.matches' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/lists' routerLinkActive='active'>{{'navbar.list' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/messages' routerLinkActive='active'>{{'navbar.message' | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/blogs' routerLinkActive='active'>Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/blocks' routerLinkActive='active'>Blocks</a>
+          </li>
+          <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/admin' routerLinkActive='active'>Admin</a>
+          </li>
+        </ng-container>
         <li class="nav-item">
-          <a class="nav-link" routerLink='/lists' routerLinkActive='active'>{{'navbar.list' | translate}}</a>
+          <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/errors' routerLinkActive='active'>{{'navbar.error' | translate}}</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink='/messages' routerLinkActive='active'>{{'navbar.message' | translate}}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink='/blocks' routerLinkActive='active'>Blocks</a>
-        </li>
-        <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
-          <a class="nav-link" routerLink='/admin' routerLinkActive='active'>Admin</a>
-        </li>
-      </ng-container>
-      <li class="nav-item">
-        <a class="nav-link" routerLink='/errors' routerLinkActive='active'>{{'navbar.error' | translate}}</a>
-      </li>
-    </ul>
-    <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
-      <img class="avatar" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
-      <a class="dropdown-toggle text-secondary ml-2" dropdownToggle>{{user.knownAs || user.username | titlecase}}</a>
-      <div class="dropdown-menu" *dropdownMenu>
-        <a class="dropdown-item" routerLink='/member/edit'>
-          Edit Profile
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item">
-          <div class="btn-group" dropdown>
-            <div class="translate">
-             <a class="translate dropdown-toggle" dropdownToggle aria-controls="dropdown-animated">
-              Languages
-               <span class="caret"></span>
-             </a>
-            </div>
-           <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
-               role="menu" aria-labelledby="button-animated">
-             <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('vn')">
-               <img src="./assets/vn.svg" alt=""> Việt Nam</a></li>
-             <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('en')"><img src="./assets/en.svg" alt=""> English</a></li>
-           </ul>
-         </div>
-        </a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()">
-          Logout
-        </a>
+      </ul>
+      <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <img class="avatar" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
+        <a class="dropdown-toggle text-secondary ml-2" dropdownToggle>{{user.knownAs || user.username | titlecase}}</a>
+        <div class="dropdown-menu" *dropdownMenu>
+          <a class="dropdown-item" routerLink='/member/edit'>
+            Edit Profile
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item">
+            <div class="btn-group" dropdown>
+              <div class="translate">
+               <a class="translate dropdown-toggle" dropdownToggle aria-controls="dropdown-animated">
+                Languages
+                 <span class="caret"></span>
+               </a>
+              </div>
+             <ul id="dropdown-animated" *dropdownMenu class="dropdown-menu"
+                 role="menu" aria-labelledby="button-animated">
+               <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('vn')">
+                 <img src="./assets/vn.svg" alt=""> Việt Nam</a></li>
+               <li role="menuitem"><a class="dropdown-item" (click)="switchLanguage('en')"><img src="./assets/en.svg" alt=""> English</a></li>
+             </ul>
+           </div>
+          </a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">
+            Logout
+          </a>
+        </div>
       </div>
-    </div>
-    <div *ngIf="(accountService.currentUser$ | async) == null">
-      <button routerLink='login' class="btn btn-primary">Login</button>
+      <div *ngIf="(accountService.currentUser$ | async) == null">
+        <button routerLink='login' class="btn btn-primary">Login</button>
+      </div>
     </div>
   </div>
 </nav>

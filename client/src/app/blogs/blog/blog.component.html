@@ -1,1 +1,34 @@
-<p>blog works!</p>
+<div *ngIf="!editMode">
+    <div>
+        <button class="btn btn-primary" (click)="editToggle()">Edit</button>
+        <button class="btn btn-danger ml-2" (click)="deleteBlog(blogs!.id)">Delete</button>
+    </div>
+    <header class="masthead text-center" >
+        <div class="container position-relative px-4 px-lg-5" *ngIf="!!blogs">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                    <div class="post-heading">
+                        <h1>{{blogs.title}}</h1>
+                        <span class="meta">
+                            Posted by
+                            <a routerLink="/members/{{blogs.username}}">{{blogs.userName}}</a>
+                            on {{blogs.publishDate | date: 'longDate'}}
+                            <span *ngIf="blogs.publishDate !== blogs.updateDate"> | Updated on {{blogs.updateDate | timeago}}</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <hr>
+    <article class="mb-4">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                      <div [innerHTML]="blogs?.content | safe">
+                      </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>

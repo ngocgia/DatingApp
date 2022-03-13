@@ -33,7 +33,7 @@ namespace API.Controllers
                     UserName = user.UserName,
                     Title = blogs.Title,
                     Content = blogs.Content,
-                    UpdateDate = blogs.UpdateDate,
+                    UpdateDate = DateTime.Now,
                     PublishDate = DateTime.Now,
                     AppUserId = user.Id,
                     PhotoId = blogs.PhotoId,

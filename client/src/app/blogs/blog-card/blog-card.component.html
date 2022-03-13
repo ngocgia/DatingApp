@@ -1,1 +1,14 @@
-<p>blog-card works!</p>
+<!-- Post preview-->
+<div class="post-preview">
+    <a routerLink='/blogs/{{blog.id}}'>
+      <h2 class="post-title">{{blog.title}}</h2>
+    </a>
+    <p class="post-meta">
+      Posted by
+      <a routerLink="/members/{{blog.userName}}">{{blog.userName}}</a>
+      on {{blog.publishDate | date: 'longDate'}}
+    </p>
+  </div>
+  <!-- Divider-->
+  <hr class="my-4" />
+  
