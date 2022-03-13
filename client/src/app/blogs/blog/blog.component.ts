@@ -25,7 +25,6 @@ export class BlogComponent implements OnInit {
     console.log(blogId);
     this.blogService.getBlog(blogId).subscribe(blogs =>{
       this.blogs = blogs;
-      console.log(this.blogs);
     })
   }
   deleteBlog(id: number){

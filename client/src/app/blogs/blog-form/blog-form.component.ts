@@ -13,10 +13,9 @@ import { BlogsService } from 'src/app/_services/blogs.service';
 export class BlogFormComponent implements OnInit, OnDestroy {
   @Output() cancelBlog = new EventEmitter();
   blogForm!: FormGroup;
-
   validationErrors: string[] = [];
   editor!: Editor;
-  html!: string;
+
   toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline', 'strike'],

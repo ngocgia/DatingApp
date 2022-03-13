@@ -4,7 +4,7 @@
         <button class="btn btn-danger ml-2" (click)="deleteBlog(blogs!.id)">Delete</button>
     </div>
     <header class="masthead text-center" >
-        <div class="container position-relative px-4 px-lg-5" *ngIf="!!blogs">
+        <div class="container position-relative px-4 px-lg-5" *ngIf="blogs">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="post-heading">
@@ -13,7 +13,7 @@
                             Posted by
                             <a routerLink="/members/{{blogs.username}}">{{blogs.userName}}</a>
                             on {{blogs.publishDate | date: 'longDate'}}
-                            <span *ngIf="blogs.publishDate !== blogs.updateDate"> | Updated on {{blogs.updateDate | timeago}}</span>
+                            <!-- <span *ngIf="blogs.publishDate !== blogs.updateDate"> | Updated on {{blogs.updateDate | timeago}}</span> -->
                         </span>
                     </div>
                 </div>
@@ -31,4 +31,7 @@
             </div>
         </div>
     </article>
+</div>
+<div *ngIf="editMode" class="container">
+    <app-blog-edit (cancelEdit)="cancelEditMode($event)"></app-blog-edit>
 </div>

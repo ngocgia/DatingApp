@@ -1,0 +1,25 @@
+<h2 class="text-center text-primary">Edit Blog</h2>
+<hr />
+<div *ngIf="blog">
+    <form #editBlogForm="ngForm" id="editBlogForm" (ngSubmit)="updateBlog()">
+      
+        <input type="text" class="form-control form-control-lg mb-4"  [(ngModel)]="blog.title" [ngModelOptions]="{standalone: true}">
+    
+        <div class="NgxEditor__Wrapper">
+            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+            <ngx-editor
+                [ngModelOptions]="{standalone: true}"
+                [(ngModel)]="blog.content"
+                [editor]="editor"
+                [placeholder]="'Type here...'"
+            ></ngx-editor>
+        </div>
+        <div class="form-group text-center mt-5"> 
+            <button class="btn btn-success mr-2" type="submit"> Save  </button>
+            <button class="btn btn-primary mr-2" type="button" (click)="cancel()">
+            Cancel
+            </button>
+        </div>
+    </form>
+  </div>
+  
