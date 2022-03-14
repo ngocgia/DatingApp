@@ -51,6 +51,7 @@ import { BlogCardComponent } from './blogs/blog-card/blog-card.component';
 import { SafePipe } from './_pipe/safe.pipe';
 import { NgxEditorModule } from 'ngx-editor';
 import { BlogEditComponent } from './blogs/blog-edit/blog-edit.component';
+import { MemberPostComponent } from './members/member-post/member-post.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -87,7 +88,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BlogFormComponent,
     BlogCardComponent,
     SafePipe,
-    BlogEditComponent
+    BlogEditComponent,
+    MemberPostComponent
   ],
   imports: [
     SocialLoginModule,

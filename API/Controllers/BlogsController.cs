@@ -84,6 +84,18 @@ namespace API.Controllers
 
             return BadRequest("Failed to update blog");
         }
+        [HttpGet("user/{username}")]
+        public async Task<ActionResult<Blogs>> GetBlogByUserName(string username)
+        {
+            var blogUsername = _unitOfWork.BlogsRepository.GetAllBlogByUserName(username);
+            if(blogUsername != null)
+            {
+                return Ok(blogUsername);
+            }
+            if (await _unitOfWork.Complete()) return NoContent();
+
+            return BadRequest("Sai roi kia!");
+        }
 
         [HttpDelete("{id}")]
          public async Task<ActionResult> DeleteBlog(int id)
@@ -104,6 +116,7 @@ namespace API.Controllers
 
             return BadRequest("Problem deleting the message");
         }
+
 
     }
 }

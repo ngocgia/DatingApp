@@ -33,11 +33,23 @@ namespace API.Data
             _context.Blogs.Remove(blogs);
         }
 
-        public async Task<PagedList<Blogs>> GetAllBlogByUserId(BlogsParams blogsParams)
+        public List<Blogs> GetAllBlogByUserName(string username)
         { 
-            return null;
+            return _context.Blogs
+                .Where(x => x.UserName.Equals(username))
+                .OrderByDescending(x => x.id)
+                .Select(blog => new Blogs
+                {
+                    UserName = blog.UserName,
+                    Title = blog.Title,
+                    Content = blog.Content,
+                    UpdateDate = blog.UpdateDate,
+                    PublishDate = blog.PublishDate,
+                    AppUserId = blog.AppUserId,
+                    PhotoId = blog.PhotoId,
+                    id = blog.id,
+                }).ToList();
         }
-
 
         public async Task<PagedList<Blogs>> GetAllBlogs(PaginationParams paginationParams)
         {

@@ -68,6 +68,9 @@
             <tab heading='Photo' (selectTab)="onTabActivated($event)">
                 <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
             </tab>
+            <tab heading='Post' (selectTab)="onTabActivated($event)">
+                <app-member-post [username]="member.username"></app-member-post>
+            </tab>
             <tab heading='Messages' (selectTab)="onTabActivated($event)">
                <app-member-messages [username]="member.username"></app-member-messages>
             </tab>

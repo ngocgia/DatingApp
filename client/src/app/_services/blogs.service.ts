@@ -24,6 +24,9 @@ export class BlogsService {
   getBlog(id: number){
     return this.http.get(this.baseUrl + 'blogs/' + id);
   }
+  getBlogByUserName(username: string){
+    return this.http.get(this.baseUrl + 'blogs/user/' + username);
+  }
   createBlog(models : Blogs){
     return this.http.post<Blogs>(this.baseUrl + "blogs", models);
   }

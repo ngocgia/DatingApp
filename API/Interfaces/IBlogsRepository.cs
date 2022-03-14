@@ -8,7 +8,7 @@ namespace API.Interfaces
 {
     public interface IBlogsRepository
     {
-        Task<PagedList<Blogs>> GetAllBlogByUserId(BlogsParams blogsParams);
+        List<Blogs> GetAllBlogByUserName(string username);
         Task<Blogs> GetBlogId(int id);
         Task<PagedList<Blogs>> GetAllBlogs(PaginationParams paginationParams);
         void AddBlog(Blogs blogs);
