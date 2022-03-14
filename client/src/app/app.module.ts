@@ -35,8 +35,8 @@ import { RolesModalComponent } from './modals/roles-modal/roles-modal.component'
 
 
 // translate
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 import { IconsModule } from './icons/icons.module';
 import { BlocksComponent } from './blocks/blocks.component';
