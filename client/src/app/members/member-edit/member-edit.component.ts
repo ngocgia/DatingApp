@@ -17,23 +17,32 @@ export class MemberEditComponent implements OnInit {
   @ViewChild('editForm') editForm!:NgForm;
   member!:Member;
   user!:User;
+  blogs!: any;
   @HostListener('window:beforeunload', ['$event']) unloadNotification($event:any){
     if(this.editForm.dirty){
       $event.returnValue = true;
     }
   }
 
-  constructor(private accountService: AccountService, private memberService: MembersService, private toastr: ToastrService ) {
+  constructor(private accountService: AccountService, private memberService: MembersService,
+     private toastr: ToastrService , private blogService: BlogsService) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
   }
 
   ngOnInit(): void {
     this.loadMember();
+    this.loadBlogByUserName()
   }
 
   loadMember(){
     this.memberService.getMember(this.user.username).subscribe(member => {
       this.member = member;
+    })
+  }
+  loadBlogByUserName(){
+    this.blogService.getBlogByUserName(this.user.username).subscribe(blog => {
+      this.blogs = blog;
+      console.log("ben edit", this.member.username);
     })
   }
 
