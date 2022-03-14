@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
+import { User } from 'src/app/_models/user';
+import { AccountService } from 'src/app/_services/account.service';
 import { BlogsService } from 'src/app/_services/blogs.service';
 
 @Component({
@@ -12,12 +15,16 @@ import { BlogsService } from 'src/app/_services/blogs.service';
 export class BlogComponent implements OnInit {
   blogs!: any;
   id!: number;
+  user!:User;
   editMode = false;
-  constructor(private blogService: BlogsService,  private route: ActivatedRoute,
-    private router: Router, private toastr: ToastrService) { }
+  constructor(public accountService: AccountService,private blogService: BlogsService,  private route: ActivatedRoute,
+    private router: Router, private toastr: ToastrService) {
+      this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
+     }
 
   ngOnInit(): void {
     this.getBlog();
+    console.log(this.user.username);
   }
 
   getBlog(){

@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FeatherModule } from 'angular-feather';
-import { Smile } from 'angular-feather/icons';
+import { allIcons } from 'angular-feather/icons';
 
-const icons = {
-  Smile
-};
+// const icons = {
+//   allIcons
+// };
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    FeatherModule.pick(icons),
+    FeatherModule.pick(allIcons),
   ],
   exports: [
     FeatherModule
