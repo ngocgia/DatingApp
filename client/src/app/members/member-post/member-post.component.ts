@@ -14,6 +14,7 @@ import { MembersService } from 'src/app/_services/members.service';
 })
 export class MemberPostComponent implements OnInit {
   @Input() username: string = "";
+  @Input() members: string="";
   blogs!: any;
   member!: Member;
   user!: User;
@@ -30,6 +31,7 @@ export class MemberPostComponent implements OnInit {
   }
 
   getBlogByUsername(){
+
     this.blogService.getBlogByUserName(this.member.username).subscribe(blog => {
       this.blogs = blog;
       console.log("Day laf ben getBlogUSER",this.username);

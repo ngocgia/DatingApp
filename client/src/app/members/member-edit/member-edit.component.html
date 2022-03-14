@@ -72,6 +72,13 @@
             <tab heading='Edit Photo'>
                 <app-photo-editor [member]="member"></app-photo-editor>
             </tab>
+            <tab heading='My Post'>
+                <div #scroll [scrollTop]="scroll.scrollHeight" class="content-blog row gx-4 gx-lg-5 ml-2 " >
+                    <div class="col-md-10 col-lg-8 col-xl-7"  *ngFor="let blog of blogs">
+                        <app-blog-card [blog]="blog!"></app-blog-card>
+                    </div>
+                </div>
+            </tab>
         </tabset>
     </div>
 </div>
