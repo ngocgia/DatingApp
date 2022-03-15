@@ -20,11 +20,13 @@ namespace API.Entities
         public ICollection<Photo> Photos { get; set; }
         public ICollection<UserLike> LikedByUsers { get; set; }
         public ICollection<UserLike> LikedUsers { get; set; }
-        public ICollection<UserBlocks> BlockedByUser { get; set; }
-        public ICollection<UserBlocks> BlockedUser { get; set; }
         public ICollection<Message> MessagesSent { get; set; }
         public ICollection<Message> MessagesReceived { get; set; }
         public ICollection<AppUserRole> UserRoles { get; set; }
+        public ICollection<UserBlocks> BlockedUser { get; set; }
+        public ICollection<UserBlocks> BlockedByUser { get; set; }
+        public ICollection<Blogs> Blogs { get; set; }
+        public ICollection<BlogComment> BlogComments { get; set; }
 
     }
 }

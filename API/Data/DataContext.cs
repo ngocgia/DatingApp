@@ -24,6 +24,7 @@ namespace API.Data
         public DbSet<Group> Groups { get; set; }
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Blogs> Blogs { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -57,6 +58,12 @@ namespace API.Data
                 .HasForeignKey(s => s.LikedUserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
+            builder.Entity<BlogComment>()
+                .HasOne(s => s.Blogs)
+                .WithMany(l => l.BlogComments)
+                .HasForeignKey(s => s.BlogsId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             // ======================BLOCK===========
               builder.Entity<UserBlocks>()
                 .HasKey(k => new { k.SourceUserId, k.BlockedUserId });
@@ -73,7 +80,7 @@ namespace API.Data
                 .HasForeignKey(s => s.BlockedUserId)
                 .OnDelete(DeleteBehavior.Cascade);
             // ================
-            
+        
             builder.Entity<Message>()
                 .HasOne(u => u.Recipient)
                 .WithMany(m => m.MessagesReceived)

@@ -1,6 +1,7 @@
-export interface Blogs {
-    id: number,
-    title: string,
+export interface Comment {
+    blogCommentId: number,
+    ParentBlogCommentId: number,
+    blogsId: number,
     content: string,
     appUserId: number,
     userName: string,

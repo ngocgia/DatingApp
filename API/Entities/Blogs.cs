@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 
 namespace API.Entities
 {
     public class Blogs
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }
         public string UserName { get; set; }
@@ -12,7 +13,7 @@ namespace API.Entities
         public DateTime PublishDate { get; set; }
         public DateTime UpdateDate { get; set; }
         public int? PhotoId { get; set; }
-     
+        public ICollection<BlogComment> BlogComments { get; set; }
 
     }
 }

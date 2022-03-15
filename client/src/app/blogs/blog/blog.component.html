@@ -23,7 +23,7 @@
                             Posted by
                             <a routerLink="/members/{{blogs.username}}">{{blogs.userName}}</a>
                             on {{blogs.publishDate | date: 'longDate'}}
-                            <!-- <span *ngIf="blogs.publishDate !== blogs.updateDate"> | Updated on {{blogs.updateDate | timeago}}</span> -->
+                            <span *ngIf="blogs.publishDate !== blogs.updateDate"> | Updated on {{blogs.updateDate | timeago}}</span>
                         </span>
                     </div>
                 </div>

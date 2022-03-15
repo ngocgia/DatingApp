@@ -1,9 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Threading.Tasks;
-using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Helpers;
@@ -33,8 +30,8 @@ namespace API.Controllers
                     UserName = user.UserName,
                     Title = blogs.Title,
                     Content = blogs.Content,
-                    UpdateDate = DateTime.Now,
-                    PublishDate = DateTime.Now,
+                    UpdateDate = DateTime.Today,
+                    PublishDate = DateTime.Today,
                     AppUserId = user.Id,
                     PhotoId = blogs.PhotoId,
                 };

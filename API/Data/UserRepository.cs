@@ -101,5 +101,7 @@ namespace API.Data
         {
             _context.Users.Remove(user);
         }
+
+      
     }
 }

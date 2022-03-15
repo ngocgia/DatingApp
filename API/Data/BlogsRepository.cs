@@ -37,7 +37,7 @@ namespace API.Data
         { 
             return _context.Blogs
                 .Where(x => x.UserName.Equals(username))
-                .OrderByDescending(x => x.id)
+                .OrderByDescending(x => x.Id)
                 .Select(blog => new Blogs
                 {
                     UserName = blog.UserName,
@@ -47,14 +47,14 @@ namespace API.Data
                     PublishDate = blog.PublishDate,
                     AppUserId = blog.AppUserId,
                     PhotoId = blog.PhotoId,
-                    id = blog.id,
+                    Id = blog.Id,
                 }).ToList();
         }
 
         public async Task<PagedList<Blogs>> GetAllBlogs(PaginationParams paginationParams)
         {
             var query = _context.Blogs
-                .OrderByDescending(m => m.id)
+                .OrderByDescending(m => m.Id)
                 .AsQueryable();
 
             var blogs = query.Select(blog => new Blogs
@@ -66,7 +66,7 @@ namespace API.Data
                 PublishDate = blog.PublishDate,
                 AppUserId = blog.AppUserId,
                 PhotoId = blog.PhotoId,
-                id = blog.id,
+                Id = blog.Id,
             });
 
             return await PagedList<Blogs>.CreateAsync(blogs, paginationParams.PageNumber, paginationParams.PageSize);
@@ -81,7 +81,7 @@ namespace API.Data
         {
             return await _context.Blogs
                 .IgnoreQueryFilters()
-                .SingleOrDefaultAsync(x => x.id == id);
+                .SingleOrDefaultAsync(x => x.Id == id);
         }
 
         public void UpsertAsync(Blogs blogs, int appUserId)
