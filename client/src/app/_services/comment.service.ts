@@ -13,6 +13,6 @@ export class CommentService {
   constructor(private http: HttpClient) { }
 
   getAllComment(blogsId: number){
-    this.http.get(this.baseUrl + "blogcomment/" + blogsId);
+    return this.http.get(this.baseUrl + "blogcomment/" + blogsId);
   }
 }
