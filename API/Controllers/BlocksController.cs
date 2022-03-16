@@ -28,11 +28,11 @@ namespace API.Controllers
 
                 if (blockedUser == null) return NotFound();
 
-                if (sourceUser.UserName == username) return BadRequest("You cannot like yourself");
+                if (sourceUser.UserName == username) return BadRequest("You cannot block yourself");
 
                 var userBlock = await _unitOfWork.BlocksRepository.GetUserBlocks(sourceUserId, blockedUser.Id);
 
-                if (userBlock != null) return BadRequest("You already like this user");
+                if (userBlock != null) return BadRequest("You already block this user");
 
                 userBlock = new UserBlocks
                 {
@@ -48,10 +48,10 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
+        public async Task<ActionResult<IEnumerable<BlockDto>>> GetUserLikes([FromQuery] BlocksParam blocksParam)
         {
-            likesParams.UserId = User.GetUserId();
-            var users = await _unitOfWork.LikesRepository.GetUserLikes(likesParams);
+            blocksParam.UserId = User.GetUserId();
+            var users = await _unitOfWork.BlocksRepository.GetUserBlocks(blocksParam);
 
             Response.AddPaginationHeader(users.CurrentPage,
                 users.PageSize, users.TotalCount, users.TotalPages);

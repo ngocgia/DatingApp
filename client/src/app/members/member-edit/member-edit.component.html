@@ -18,7 +18,11 @@
                 </div>
             </div>
             
-            <h3 style="text-align: center;">{{member.knownAs}}</h3>
+            <div class="d-flex justify-content-center h-100">
+                <div>
+                    <h3 style="text-align: center;">{{member.knownAs}}</h3>
+                </div>
+            </div>
            
          
             <div class="card-body">
@@ -49,24 +53,23 @@
         <tabset class="member-tabset">
             <tab heading='About {{member.knownAs}}'>
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
+                    <h4 class="mt-2">Know As</h4>
+                    <input [(ngModel)]="member.knownAs" type="text" name="knownAs" class="form-control mb-2">
                     <h4>Description</h4>
-                    <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
+                    <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="4"></textarea>
                     <h4 class="mt-2">Looking for</h4>
-                    <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="6"></textarea>
+                    <textarea class="form-control" [(ngModel)]="member.lookingFor" name="lookingFor" rows="4"></textarea>
                     <h4 class="mt-2">Interests</h4>
-                    <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="6"></textarea>
-                    <!-- <h4 class="mt-2">Know As:</h4>
-                    <input [(ngModel)]="member.knownAs" type="text" name="knownAs" class="form-control"> -->
+                    <textarea class="form-control" [(ngModel)]="member.interests" name="interests" rows="4"></textarea>
                     <h4 class="mt-2">Location Details:</h4>
                     <div class="row g-3">
-                    <div class="form-inline">
-                        <label for="city">City:</label>
-                        <input [(ngModel)]="member.city" type="text" name="city" class="form-control mx-2">
-                        <label for="country">Country:</label>
-                        <input [(ngModel)]="member.country" type="text" name="country" class="form-control mx-2">
-            
+                        <div class="form-inline">
+                            <label for="city">City:</label>
+                            <input [(ngModel)]="member.city" type="text" name="city" class="form-control mx-2">
+                            <label for="country">Country:</label>
+                            <input [(ngModel)]="member.country" type="text" name="country" class="form-control mx-2">
+                        </div>
                     </div>
-                   </div>
                 </form>
             </tab>
             <tab heading='Edit Photo'>

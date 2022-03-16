@@ -37,7 +37,7 @@ namespace API.Data
             if(blocksParam.Predicate == "blockedBy")
             {
                 blocks = blocks.Where(block => block.BlockedUserId == blocksParam.UserId);
-                user = blocks.Select(like => like.SourceUser);
+                user = blocks.Select(block => block.SourceUser);
             }
 
             var blockedUsers = user.Select(user => new BlockDto
