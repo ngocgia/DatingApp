@@ -1,10 +1,10 @@
 export interface Comment {
     blogCommentId: number,
-    ParentBlogCommentId: number,
+    parentBlogCommentId?: number,
     blogsId: number,
     content: string,
     appUserId: number,
-    userName: string,
+    username: string,
     publishDate: Date,
     updateDate: Date,
 }

@@ -15,4 +15,7 @@ export class CommentService {
   getAllComment(blogsId: number){
     return this.http.get(this.baseUrl + "blogcomment/" + blogsId);
   }
+  createComment(model: Comment, blogsId: number){
+    return this.http.post<Comment>(this.baseUrl + "blogcomment/" + blogsId, model);
+  }
 }

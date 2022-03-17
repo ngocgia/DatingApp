@@ -20,7 +20,7 @@ export class MemberMessagesComponent implements OnInit {
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
-    console.log(this.messageService.messageThread$);
+    
   }
 
   sendMessage(){

@@ -473,13 +473,11 @@ namespace API.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.Blogs", "Blogs")
+                    b.HasOne("API.Entities.Blogs", null)
                         .WithMany("BlogComments")
                         .HasForeignKey("BlogsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Blogs");
                 });
 
             modelBuilder.Entity("API.Entities.Blogs", b =>

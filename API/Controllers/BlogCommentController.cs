@@ -30,8 +30,8 @@ namespace API.Controllers
             return BadRequest("Sai roi kia!");
             // return Ok(blogComment);
         }
-        [HttpPost]
-        public async Task<ActionResult<BlogComment>> Create(BlogComment blogComment)
+        [HttpPost("{blogId}")]
+        public async Task<ActionResult<BlogComment>> Create(BlogComment blogComment, int blogId)
         {
            try
             {
@@ -45,7 +45,7 @@ namespace API.Controllers
                     Username = user.UserName,
                     AppUserId = user.Id,
                     PublishDate = DateTime.Now,
-                    // UpdateDate = DateTime.Now
+                    UpdateDate = DateTime.Now
                     
                 };
                 _unitOfWork.BlogCommentRepository.AddComment(newComment);

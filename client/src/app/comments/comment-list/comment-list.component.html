@@ -1,1 +1,4 @@
-<p>1 cai gi do dang hoat dong</p>
+<div *ngFor="let comment of comments">
+    <i>{{comment.username}}</i>
+    <p>{{comment.content}}</p>
+</div>

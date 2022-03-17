@@ -9,7 +9,7 @@ import { CommentService } from 'src/app/_services/comment.service';
   styleUrls: ['./comment-list.component.css']
 })
 export class CommentListComponent implements OnInit {
- 
+ @Input() comments!: Comment[];
   constructor(private commentService : CommentService, private route: ActivatedRoute,) { }
 
   ngOnInit(): void {

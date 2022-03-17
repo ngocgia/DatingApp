@@ -1,9 +1,12 @@
 using System;
+using System.ComponentModel.DataAnnotations;
+// using System.ComponentModel.DataAnnotations.Schema;
 
 namespace API.Entities
 {
     public class BlogComment
     {
+        [Key]
         public int BlogCommentId { get; set; }
         public int? ParentBlogCommentId { get; set; }
         public int BlogsId { get; set; }
