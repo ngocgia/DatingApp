@@ -1,4 +1,22 @@
 <div *ngFor="let comment of comments">
-    <i>{{comment.username}}</i>
-    <p>{{comment.content}}</p>
+    <div class="bg-white p-2">
+        <div class="d-flex flex-row user-info">
+            <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+            <div class="d-flex flex-column justify-content-start ml-2">
+                <span class="d-block font-weight-bold name">{{comment.username}}</span>
+                <span class="date text-black-50">{{comment.updateDate | date:'medium'}}</span>
+            </div>
+        </div>
+        <div class="mt-2">
+            <p class="comment-text">{{comment.content}}</p>
+        </div>
+    </div>
+    <div class="bg-white">
+        <div class="d-flex flex-row ">
+            <div class="like cursor mr-2"><i-feather name="edit" class="size"></i-feather><span class="ml-1">Edit</span></div>
+            <div class="like cursor mr-2"><i-feather name="corner-up-left" class="size"></i-feather><span class="ml-1">Replying</span></div>
+            <div class="like cursor mr-2"><i-feather name="trash" class="size"></i-feather><span class="ml-1">Delete</span></div>
+        </div>
+    </div>
+    <hr>
 </div>
