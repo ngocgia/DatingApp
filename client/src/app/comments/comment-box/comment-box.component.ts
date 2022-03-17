@@ -43,6 +43,7 @@ export class CommentBoxComponent implements OnInit {
     this.commentService.createComment(this.commentForm.value, blogId).subscribe(response =>{
       this.toastr.success("CMT thành công!!😍");
       this.commentForm.reset();
+      window.location.reload();
       console.log("dúng",response);
     }, error =>{
       this.toastr.error("CMT thất bại!!😢");

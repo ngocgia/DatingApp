@@ -174,9 +174,6 @@ namespace API.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
-                    b.Property<int?>("ParentBlogCommentId")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("PublishDate")
                         .HasColumnType("timestamp without time zone");
 
@@ -207,9 +204,6 @@ namespace API.Data.Migrations
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
-
-                    b.Property<int?>("PhotoId")
-                        .HasColumnType("integer");
 
                     b.Property<DateTime>("PublishDate")
                         .HasColumnType("timestamp without time zone");
@@ -467,17 +461,21 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.BlogComment", b =>
                 {
-                    b.HasOne("API.Entities.AppUser", null)
+                    b.HasOne("API.Entities.AppUser", "AppUser")
                         .WithMany("BlogComments")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("API.Entities.Blogs", null)
+                    b.HasOne("API.Entities.Blogs", "Blogs")
                         .WithMany("BlogComments")
                         .HasForeignKey("BlogsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Blogs");
                 });
 
             modelBuilder.Entity("API.Entities.Blogs", b =>

@@ -211,8 +211,7 @@ namespace API.Data.Migrations
                     UserName = table.Column<string>(type: "text", nullable: true),
                     AppUserId = table.Column<int>(type: "integer", nullable: false),
                     PublishDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    PhotoId = table.Column<int>(type: "integer", nullable: true)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -330,7 +329,6 @@ namespace API.Data.Migrations
                 {
                     BlogCommentId = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    ParentBlogCommentId = table.Column<int>(type: "integer", nullable: true),
                     BlogsId = table.Column<int>(type: "integer", nullable: false),
                     Content = table.Column<string>(type: "text", nullable: true),
                     Username = table.Column<string>(type: "text", nullable: true),

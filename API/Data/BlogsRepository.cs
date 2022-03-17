@@ -46,7 +46,6 @@ namespace API.Data
                     UpdateDate = blog.UpdateDate,
                     PublishDate = blog.PublishDate,
                     AppUserId = blog.AppUserId,
-                    PhotoId = blog.PhotoId,
                     Id = blog.Id,
                 }).ToList();
         }
@@ -65,7 +64,6 @@ namespace API.Data
                 UpdateDate = blog.UpdateDate,
                 PublishDate = blog.PublishDate,
                 AppUserId = blog.AppUserId,
-                PhotoId = blog.PhotoId,
                 Id = blog.Id,
             });
 

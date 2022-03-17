@@ -30,10 +30,9 @@ namespace API.Controllers
                     UserName = user.UserName,
                     Title = blogs.Title,
                     Content = blogs.Content,
-                    UpdateDate = DateTime.Today,
-                    PublishDate = DateTime.Today,
+                    UpdateDate = DateTime.UtcNow,
+                    PublishDate = DateTime.Now,
                     AppUserId = user.Id,
-                    PhotoId = blogs.PhotoId,
                 };
                 _unitOfWork.BlogsRepository.AddBlog(newBlog);
                 return Ok();

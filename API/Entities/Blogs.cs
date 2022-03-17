@@ -12,7 +12,6 @@ namespace API.Entities
         public int AppUserId { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime UpdateDate { get; set; }
-        public int? PhotoId { get; set; }
         public ICollection<BlogComment> BlogComments { get; set; }
 
     }
