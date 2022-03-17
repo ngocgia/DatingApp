@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Interfaces;
@@ -18,7 +19,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{blogId}")]
-        public async Task<ActionResult<BlogComment>> GetAllBlogComment(int blogId)
+        public async Task<ActionResult<CommentDto>> GetAllBlogComment(int blogId)
         {
             var blogComment = _unitOfWork.BlogCommentRepository.GetAllCommentAsync(blogId);
             if(blogComment != null)
@@ -39,14 +40,12 @@ namespace API.Controllers
                 var newComment = new BlogComment
                 {
                     BlogCommentId = blogComment.BlogCommentId,
-                    ParentBlogCommentId = blogComment.ParentBlogCommentId,
                     BlogsId = blogComment.BlogsId,
                     Content = blogComment.Content,
                     Username = user.UserName,
                     AppUserId = user.Id,
                     PublishDate = DateTime.Now,
-                    UpdateDate = DateTime.Now
-                    
+                    UpdateDate = DateTime.UtcNow,
                 };
                 _unitOfWork.BlogCommentRepository.AddComment(newComment);
                 return Ok();

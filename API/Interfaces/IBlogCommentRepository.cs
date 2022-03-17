@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 
 namespace API.Interfaces
@@ -9,7 +10,7 @@ namespace API.Interfaces
         void AddComment(BlogComment blogComment);
         void DeleteCommentAsync(int blogCommentId);
         void UpdateCommnetAsync(BlogComment blogComment, int appUserId);
-        List<BlogComment> GetAllCommentAsync(int blogId);
+        List<CommentDto> GetAllCommentAsync(int blogId);
         Task<BlogComment> GetCommentAsync(int blogCommentId);
      }
 }

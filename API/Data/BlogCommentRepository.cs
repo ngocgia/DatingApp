@@ -1,8 +1,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
 using API.Interfaces;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -10,8 +13,10 @@ namespace API.Data
     public class BlogCommentRepository : IBlogCommentRepository
     {
         private readonly DataContext _context;
-        public BlogCommentRepository(DataContext context)
+        private readonly IMapper _mapper;
+        public BlogCommentRepository(DataContext context, IMapper mapper)
         {
+            _mapper = mapper;
             _context = context;
         }
 
@@ -23,26 +28,17 @@ namespace API.Data
 
         public void DeleteCommentAsync(int blogCommentId)
         {
-            BlogComment blogComment =(BlogComment) _context.BlogComments.Where(c => c.BlogCommentId == blogCommentId).First();
+            BlogComment blogComment = (BlogComment)_context.BlogComments.Where(c => c.BlogCommentId == blogCommentId).First();
             _context.BlogComments.Remove(blogComment);
         }
 
-        public List<BlogComment> GetAllCommentAsync(int blogId)
+        public List<CommentDto> GetAllCommentAsync(int blogId)
         {
             return _context.BlogComments
                         .Where(x => x.BlogsId.Equals(blogId))
                         .OrderByDescending(x => x.BlogCommentId)
-                        .Select(x => new BlogComment
-                        {
-                            BlogCommentId = x.BlogCommentId,
-                            ParentBlogCommentId = x.ParentBlogCommentId,
-                            BlogsId = x.BlogsId,
-                            Content = x.Content,
-                            Username = x.Username,
-                            AppUserId = x.AppUserId,
-                            PublishDate = x.PublishDate,
-                            UpdateDate = x.UpdateDate
-                        }).ToList();
+                        .ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
+                        .ToList();
         }
 
         public async Task<BlogComment> GetCommentAsync(int blogCommentId)
@@ -52,7 +48,7 @@ namespace API.Data
 
         public void UpdateCommnetAsync(BlogComment blogComment, int appUserId)
         {
-              _context.Entry(blogComment).State = EntityState.Modified;
+            _context.Entry(blogComment).State = EntityState.Modified;
         }
     }
 }

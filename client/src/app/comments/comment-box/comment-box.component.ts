@@ -24,6 +24,7 @@ export class CommentBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.intitializeForm();
+    console.log(this.user.photoUrl)
   }
   // resetComment() {
   //   this.commentForm.reset();
