@@ -10,7 +10,7 @@ import { CommentService } from 'src/app/_services/comment.service';
 export class CommentSystemComponent implements OnInit {
   @Input() blogId!: number;
   comments : any | Comment;
-
+  loading = false;
   constructor(private commentService: CommentService) { }
 
   ngOnInit(): void {
@@ -18,8 +18,10 @@ export class CommentSystemComponent implements OnInit {
   }
 
   loadAllComment(){
+    this.loading = true;
     this.commentService.getAllComment(this.blogId).subscribe(comment => {
       this.comments = comment;
+      this.loading = false;
     })
   }
 }

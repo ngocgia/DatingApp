@@ -4,4 +4,4 @@
     </div>
 </div>
 
-<app-comment-list [comments]="comments" *ngIf="!!comments"></app-comment-list>
+<app-comment-list [comments]="comments" *ngIf="!!comments  && !loading"></app-comment-list>

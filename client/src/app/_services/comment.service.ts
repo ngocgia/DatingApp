@@ -18,4 +18,8 @@ export class CommentService {
   createComment(model: Comment, blogsId: number){
     return this.http.post<Comment>(this.baseUrl + "blogcomment/" + blogsId, model);
   }
+
+  deleteComment(blogCommentId: number){
+    return this.http.delete(this.baseUrl + "blogcomment/" + blogCommentId);
+  }
 }

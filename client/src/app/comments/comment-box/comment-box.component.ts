@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/_models/user';
@@ -24,6 +25,9 @@ export class CommentBoxComponent implements OnInit {
   ngOnInit(): void {
     this.intitializeForm();
   }
+  // resetComment() {
+  //   this.commentForm.reset();
+  // }
 
   intitializeForm(){
     const blogId = parseInt(this.route.snapshot.paramMap.get('id')!);
@@ -37,7 +41,6 @@ export class CommentBoxComponent implements OnInit {
     const blogId = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.commentService.createComment(this.commentForm.value, blogId).subscribe(response =>{
       this.toastr.success("CMT thành công!!😍");
-      // window.location.reload();
       this.commentForm.reset();
       console.log("dúng",response);
     }, error =>{
