@@ -24,18 +24,9 @@ export class CommentListComponent implements OnInit {
     
   }
 
-  deleteComment(comment:Comment, comments:Comment[] ){
-    this.commentService.deleteComment(comment.blogCommentId).subscribe(()=>{
-      let index = 0;
-      for(let i = 0; i< comments.length; i++){
-        if(comments[i].blogCommentId === comment.blogCommentId){
-          index = i;
-        }
-      }
-
-      if(index > -1){
-        comments.slice(index, 1);
-      }
+  deleteComment(blogCommentId: number ){
+    this.commentService.deleteComment(blogCommentId).subscribe(()=>{
+      this.comments?.splice(this.comments.findIndex(x => x?.blogCommentId === blogCommentId), 1);
       this.toastr.info("Blog comment deleted.");
     })
   }
