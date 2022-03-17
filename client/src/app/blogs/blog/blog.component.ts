@@ -2,11 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
-import { Member } from 'src/app/_models/member';
 import { User } from 'src/app/_models/user';
 import { AccountService } from 'src/app/_services/account.service';
 import { BlogsService } from 'src/app/_services/blogs.service';
-
 @Component({
   selector: 'app-blog',
   templateUrl: './blog.component.html',

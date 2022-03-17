@@ -1,9 +1,9 @@
 <div *ngFor="let comment of comments">
     <div class="bg-white p-2">
         <div class="d-flex flex-row user-info">
-            <img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="40">
+            <img class="rounded-circle" src="{{comment.userPhotoUrl || './assets/user.png'}}" width="45">
             <div class="d-flex flex-column justify-content-start ml-2">
-                <span class="d-block font-weight-bold name">{{comment.username}}</span>
+                <span class="d-block font-weight-bold name"><a routerLink="/members/{{comment.username}}">{{comment.username}}</a></span>
                 <span class="date text-black-50">{{comment.updateDate | date:'medium'}}</span>
             </div>
         </div>
@@ -11,12 +11,14 @@
             <p class="comment-text">{{comment.content}}</p>
         </div>
     </div>
-    <div class="bg-white">
+    <div class="bg-white" *ngIf="comment.username === user.username">
         <div class="d-flex flex-row ">
-            <div class="like cursor mr-2"><i-feather name="edit" class="size"></i-feather><span class="ml-1">Edit</span></div>
-            <div class="like cursor mr-2"><i-feather name="corner-up-left" class="size"></i-feather><span class="ml-1">Replying</span></div>
-            <div class="like cursor mr-2"><i-feather name="trash" class="size"></i-feather><span class="ml-1">Delete</span></div>
+            <div class="like cursor mr-2" (click)="editComment()"><i-feather name="edit" class="size"></i-feather><span class="ml-1">Edit</span></div>
+            <div class="like cursor mr-2" (click)="deleteComment(comment, comments)"><i-feather name="trash" class="size"></i-feather><span class="ml-1">Delete</span></div>
         </div>
+    </div>
+    <div *ngIf="!!isEditable" class="mt-3 ml-3">
+        <app-comment-box></app-comment-box>
     </div>
     <hr>
 </div>
