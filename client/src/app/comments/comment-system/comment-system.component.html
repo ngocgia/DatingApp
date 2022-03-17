@@ -1,0 +1,7 @@
+<div>
+    <div class="mb-3">
+        <app-comment-box></app-comment-box>
+    </div>
+</div>
+
+<app-comment-list [comments]="comments" *ngIf="!!comments"></app-comment-list>

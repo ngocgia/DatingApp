@@ -1,5 +1,4 @@
 import { HttpClient } from '@angular/common/http';
-import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 

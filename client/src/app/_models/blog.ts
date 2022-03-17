@@ -6,4 +6,4 @@ export interface Blogs {
     userName: string,
     publishDate: Date,
     updateDate: Date,
-  }
+}

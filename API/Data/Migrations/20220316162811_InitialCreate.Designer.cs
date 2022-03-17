@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220312102114_InitialCreate")]
+    [Migration("20220316162811_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -160,9 +160,46 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserRoles");
                 });
 
+            modelBuilder.Entity("API.Entities.BlogComment", b =>
+                {
+                    b.Property<int>("BlogCommentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("BlogsId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ParentBlogCommentId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("PublishDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("UpdateDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("BlogCommentId");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("BlogsId");
+
+                    b.ToTable("BlogComments");
+                });
+
             modelBuilder.Entity("API.Entities.Blogs", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
@@ -188,7 +225,9 @@ namespace API.Data.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("text");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("Blogs");
                 });
@@ -428,6 +467,30 @@ namespace API.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("API.Entities.BlogComment", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", null)
+                        .WithMany("BlogComments")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.Blogs", null)
+                        .WithMany("BlogComments")
+                        .HasForeignKey("BlogsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("API.Entities.Blogs", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", null)
+                        .WithMany("Blogs")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("API.Entities.Connection", b =>
                 {
                     b.HasOne("API.Entities.Group", null)
@@ -550,6 +613,10 @@ namespace API.Data.Migrations
 
                     b.Navigation("BlockedUser");
 
+                    b.Navigation("BlogComments");
+
+                    b.Navigation("Blogs");
+
                     b.Navigation("LikedByUsers");
 
                     b.Navigation("LikedUsers");
@@ -561,6 +628,11 @@ namespace API.Data.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("API.Entities.Blogs", b =>
+                {
+                    b.Navigation("BlogComments");
                 });
 
             modelBuilder.Entity("API.Entities.Group", b =>
