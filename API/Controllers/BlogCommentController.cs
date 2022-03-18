@@ -31,8 +31,8 @@ namespace API.Controllers
             return BadRequest("Sai roi kia!");
             // return Ok(blogComment);
         }
-        [HttpPost("{blogId}")]
-        public async Task<ActionResult<BlogComment>> Create(BlogComment blogComment, int blogId)
+        [HttpPost]
+        public async Task<ActionResult<BlogComment>> Create(BlogComment blogComment)
         {
            try
             {

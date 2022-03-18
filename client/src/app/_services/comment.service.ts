@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Comment } from '../_models/comment';
+import { BlogCommentCreate } from '../comments/models/blog-comment-create';
+import { BlogComment } from '../comments/models/blog-comment.model';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +17,8 @@ export class CommentService {
   getAllComment(blogsId: number){
     return this.http.get(this.baseUrl + "blogcomment/" + blogsId);
   }
-  createComment(model: Comment, blogsId: number){
-    return this.http.post<Comment>(this.baseUrl + "blogcomment/" + blogsId, model);
+  createComment(model: BlogCommentCreate){
+    return this.http.post<BlogComment>(this.baseUrl + "blogcomment" , model);
   }
 
   deleteComment(blogCommentId: number){
