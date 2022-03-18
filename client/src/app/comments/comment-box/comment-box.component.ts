@@ -24,11 +24,7 @@ export class CommentBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.intitializeForm();
-    console.log(this.user.photoUrl)
   }
-  // resetComment() {
-  //   this.commentForm.reset();
-  // }
 
   intitializeForm(){
     const blogId = parseInt(this.route.snapshot.paramMap.get('id')!);
@@ -36,7 +32,6 @@ export class CommentBoxComponent implements OnInit {
       blogsId: [blogId],
       content : ['']
     });
-    console.log("vaule comment:", this.commentForm.value);
   }
   createComment(){
     const blogId = parseInt(this.route.snapshot.paramMap.get('id')!);

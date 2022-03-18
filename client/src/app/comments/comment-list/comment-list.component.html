@@ -13,12 +13,9 @@
     </div>
     <div class="bg-white" *ngIf="comment.username === user.username">
         <div class="d-flex flex-row ">
-            <div class="like cursor mr-2" (click)="editComment()"><i-feather name="edit" class="size"></i-feather><span class="ml-1">Edit</span></div>
+            <div class="like cursor mr-2" (click)="editComment(comment.blogCommentId)"><i-feather name="edit" class="size"></i-feather><span class="ml-1">Edit</span></div>
             <div class="like cursor mr-2" (click)="deleteComment(comment.blogCommentId)"><i-feather name="trash" class="size"></i-feather><span class="ml-1">Delete</span></div>
         </div>
-    </div>
-    <div *ngIf="!!isEditable" class="mt-3 ml-3">
-        <app-comment-box></app-comment-box>
     </div>
     <hr>
 </div>

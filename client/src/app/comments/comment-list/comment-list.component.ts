@@ -21,7 +21,6 @@ export class CommentListComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
   }
 
   deleteComment(blogCommentId: number ){
@@ -30,8 +29,8 @@ export class CommentListComponent implements OnInit {
       this.toastr.info("Blog comment deleted.");
     })
   }
-  editComment(){
-    this.isEditable = !this.isEditable;
+  editComment(blogCommentId: number){
+   console.log(blogCommentId);
   }
   
 }

@@ -4,7 +4,7 @@ autocomplete="off">
         <div class="d-flex flex-row align-items-start">
             <img class="rounded-circle" src="{{user.photoUrl || './assets/user.png'}}" width="40">
             <textarea class="form-control ml-1 shadow-none textarea"
-            [formControl]="$any(commentForm.controls['content'])"></textarea>
+            [formControl]="$any(commentForm.controls['content'])" placeholder="Viết bình luận của bạn ..."></textarea>
         </div>
         <div class="mt-2 text-right">
             <button class="btn btn-primary btn-sm shadow-none" type="submit">Post comment</button>
