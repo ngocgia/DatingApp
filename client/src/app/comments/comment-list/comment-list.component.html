@@ -6,15 +6,14 @@
                 <span class="d-block font-weight-bold name"><a routerLink="/members/{{comment.username}}">{{comment.username}}</a></span>
                 <span class="date text-black-50">{{comment.updateDate | date:'medium'}}</span>
             </div>
+            <div class="bg-white ml-auto p-2" *ngIf="comment.username === user.username">
+                <div class="d-flex flex-row ">
+                    <div class="like cursor mr-2" (click)="deleteComment(comment.blogCommentId)"><i-feather name="x" class="size"></i-feather></div>
+                </div>
+            </div>
         </div>
         <div class="mt-2">
             <p class="comment-text">{{comment.content}}</p>
-        </div>
-    </div>
-    <div class="bg-white" *ngIf="comment.username === user.username">
-        <div class="d-flex flex-row ">
-            <div class="like cursor mr-2" (click)="editComment(comment.blogCommentId)"><i-feather name="edit" class="size"></i-feather><span class="ml-1">Edit</span></div>
-            <div class="like cursor mr-2" (click)="deleteComment(comment.blogCommentId)"><i-feather name="trash" class="size"></i-feather><span class="ml-1">Delete</span></div>
         </div>
     </div>
     <hr>
