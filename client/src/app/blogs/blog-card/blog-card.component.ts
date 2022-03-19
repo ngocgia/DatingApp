@@ -7,7 +7,7 @@ import { Blogs } from 'src/app/_models/blog';
   styleUrls: ['./blog-card.component.css']
 })
 export class BlogCardComponent implements OnInit {
-  @Input() blog!: Blogs;
+  @Input() blog!: any;
   constructor() { }
 
   ngOnInit(): void {

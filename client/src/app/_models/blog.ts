@@ -3,7 +3,7 @@ export interface Blogs {
     title: string,
     content: string,
     appUserId: number,
-    userName: string,
+    username: string,
     publishDate: Date,
     updateDate: Date,
 }
