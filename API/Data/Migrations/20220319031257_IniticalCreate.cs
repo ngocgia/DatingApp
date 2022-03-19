@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace API.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class IniticalCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -211,7 +211,8 @@ namespace API.Data.Migrations
                     UserName = table.Column<string>(type: "text", nullable: true),
                     AppUserId = table.Column<int>(type: "integer", nullable: false),
                     PublishDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
-                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    UpdateDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    IsApproved = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {

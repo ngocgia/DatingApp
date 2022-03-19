@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Blogs } from '../_models/blog';
 import { Photo } from '../_models/photo';
 import { User } from '../_models/user';
 
@@ -30,6 +31,17 @@ export class AdminService {
 
   rejectPhoto(photoId: number) {
     return this.http.post(this.baseUrl + 'admin/reject-photo/' + photoId, {});
+  }
+  getBlogsForApproval() {
+    return this.http.get<Blogs[]>(this.baseUrl + 'admin/blogs-to-moderate');
+  }
+
+  approveBlog(blogId: number) {
+    return this.http.post(this.baseUrl + 'admin/approve-blog/' + blogId, {});
+  }
+
+  rejectBlog(blogId: number) {
+    return this.http.post(this.baseUrl + 'admin/reject-blog/' + blogId, {});
   }
 
   deleteUser(username: string){

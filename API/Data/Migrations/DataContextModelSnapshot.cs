@@ -205,6 +205,9 @@ namespace API.Data.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("boolean");
+
                     b.Property<DateTime>("PublishDate")
                         .HasColumnType("timestamp without time zone");
 

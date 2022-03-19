@@ -6,8 +6,6 @@ using API.DTOs;
 using API.Entities;
 using API.Helpers;
 using API.Interfaces;
-using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -70,11 +68,6 @@ namespace API.Data
             return await PagedList<Blogs>.CreateAsync(blogs, paginationParams.PageNumber, paginationParams.PageSize);
         }
 
-        public Task<List<Blogs>> GetAllFamousAsync()
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Blogs> GetBlogId(int id)
         {
             return await _context.Blogs
@@ -85,6 +78,21 @@ namespace API.Data
         public void UpsertAsync(Blogs blogs, int appUserId)
         {
              _context.Entry(blogs).State = EntityState.Modified;
+        }
+
+        public async Task<IEnumerable<BlogForApprovalDto>> GetUnapprovedBlogs()
+        {
+            return await _context.Blogs
+                .IgnoreQueryFilters()
+                .Where(p => p.IsApproved == false)
+                .Select(u => new BlogForApprovalDto
+                {
+                    Id = u.Id,
+                    Username = u.UserName,
+                    Title = u.Title,
+                    Content = u.Content,
+                    IsApproved = u.IsApproved
+                }).ToListAsync();
         }
     }
 }

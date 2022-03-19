@@ -64,7 +64,8 @@ namespace API.Controllers
             return Ok(await _userManager.GetRolesAsync(user));
         }
 
-        [Authorize(Policy = "RequireAdminRole")]
+        // [Authorize(Policy = "RequireAdminRole")]
+        [Authorize(Policy = "ModeratePhotoRole")]
         [HttpGet("photos-to-moderate")]
         public async Task<ActionResult> GetPhotosForModeration()
         {
@@ -73,7 +74,8 @@ namespace API.Controllers
             return Ok(photos);
         }
 
-        [Authorize(Policy = "RequireAdminRole")]
+        // [Authorize(Policy = "RequireAdminRole")]
+        [Authorize(Policy = "ModeratePhotoRole")]
         [HttpPost("approve-photo/{photoId}")]
         public async Task<ActionResult> ApprovePhoto(int photoId)
         {
@@ -133,6 +135,50 @@ namespace API.Controllers
                  return Ok();
             }
             return BadRequest("Delete error");
+        }
+
+        [Authorize(Policy = "ModeratePhotoRole")]
+        [HttpGet("blogs-to-moderate")]
+        public async Task<ActionResult> GetBlogsForModeration()
+        {
+            var blogs = await _unitOfWork.BlogsRepository.GetUnapprovedBlogs();
+
+            return Ok(blogs);
+        }
+
+        [Authorize(Policy = "ModeratePhotoRole")]
+        [HttpPost("approve-blog/{blogId}")]
+        public async Task<ActionResult> ApproveBlog(int blogId)
+        {
+            var blog = await _unitOfWork.BlogsRepository.GetBlogId(blogId);
+
+            if (blog == null) return NotFound("Could not find blog");
+
+            blog.IsApproved = true;
+
+            // var user = await _unitOfWork.UserRepository.GetUserByPhotoId(photoId);
+
+            // if (!user.Photos.Any(x => x.IsMain)) photo.IsMain = true;
+
+            await _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [Authorize(Policy = "ModeratePhotoRole")]
+        [HttpPost("reject-blog/{blogId}")]
+        public async Task<ActionResult> RejectBlog(int blogId)
+        {
+            var blog = await _unitOfWork.BlogsRepository.GetBlogId(blogId);
+
+            if (blog == null){
+                return NotFound("Could not find blogs");
+            } else {
+                _unitOfWork.BlogsRepository.DeleteBlog(blog);
+            }
+            await _unitOfWork.Complete();
+
+            return Ok();
         }
 
     }

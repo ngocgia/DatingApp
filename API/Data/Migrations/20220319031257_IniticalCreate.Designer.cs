@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220317110420_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220319031257_IniticalCreate")]
+    partial class IniticalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -206,6 +206,9 @@ namespace API.Data.Migrations
 
                     b.Property<string>("Content")
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("PublishDate")
                         .HasColumnType("timestamp without time zone");

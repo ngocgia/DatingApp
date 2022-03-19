@@ -55,6 +55,7 @@ import { MemberPostComponent } from './members/member-post/member-post.component
 import { CommentListComponent } from './comments/comment-list/comment-list.component';
 import { CommentBoxComponent } from './comments/comment-box/comment-box.component';
 import { CommentSystemComponent } from './comments/comment-system/comment-system.component';
+import { BlogManagementComponent } from './admin/blog-management/blog-management.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -95,7 +96,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MemberPostComponent,
     CommentListComponent,
     CommentBoxComponent,
-    CommentSystemComponent
+    CommentSystemComponent,
+    BlogManagementComponent
   ],
   imports: [
     SocialLoginModule,

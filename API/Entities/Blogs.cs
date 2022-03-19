@@ -12,6 +12,7 @@ namespace API.Entities
         public int AppUserId { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime UpdateDate { get; set; }
+        public bool IsApproved { get; set; }
         public ICollection<BlogComment> BlogComments { get; set; }
 
     }

@@ -14,6 +14,6 @@ namespace API.Interfaces
         void AddBlog(Blogs blogs);
         void DeleteBlog(Blogs blogs);
         void UpsertAsync(Blogs blogs, int appUserId);
-        Task<List<Blogs>> GetAllFamousAsync();
+        Task<IEnumerable<BlogForApprovalDto>> GetUnapprovedBlogs();
     }
 }
