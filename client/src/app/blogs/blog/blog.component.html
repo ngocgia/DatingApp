@@ -21,7 +21,7 @@
                         <h1>{{blogs.title}}</h1>
                         <span class="meta">
                             Posted by
-                            <a routerLink="/members/{{blogs.uerName}}">{{blogs.userName}}</a>
+                            <a routerLink="/members/{{blogs.userName}}">{{blogs.userName}}</a>
                             on {{blogs.publishDate | date: 'longDate'}}
                             <span *ngIf="blogs.publishDate !== blogs.updateDate"> | Publish on {{blogs.updateDate | timeago}}</span>
                         </span>

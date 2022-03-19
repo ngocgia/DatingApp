@@ -10,7 +10,7 @@
         <tbody>
             <tr *ngFor="let blog of blogs">
                 <td><a routerLink='/blogs/{{blog.id}}'>{{blog.title}}</a></td>
-                <td>Post by <a href="">{{blog.userName}}</a></td>
+                <td><a routerLink="/members/{{blog.userName}}">{{blog.userName}}</a></td>
                 <td>
                     <button class='btn btn-sm btn-success mr-1' (click)='approveBlog(blog.id)'>Approve</button>
                     <button class='btn btn-sm btn-danger' (click)='rejectBlog(blog.id)'>Reject</button>
