@@ -71,7 +71,9 @@ namespace API
                 .WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
-
+            
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -79,6 +81,7 @@ namespace API
                 endpoints.MapControllers();
                 endpoints.MapHub<PresenceHub>("hubs/presence");
                 endpoints.MapHub<MessageHub>("hubs/messages");
+                endpoints.MapFallbackToController("Index", "Fallback");
             });
         }
     }
