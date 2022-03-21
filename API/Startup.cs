@@ -44,12 +44,12 @@ namespace API
             services.AddIdentityServices(_config);
             services.AddSignalR();
 
-            services.AddAuthentication();
-                    // .AddGoogle( options =>
-                    // {
-                    //     options.ClientId = _config["Authentication:Google:ClientId"];
-                    //     options.ClientSecret = _config["Authentication:Google:ClientSecret"];
-                    // });
+            services.AddAuthentication()
+                    .AddGoogle( options =>
+                    {
+                        options.ClientId = _config["Authentication:Google:ClientId"];
+                        options.ClientSecret = _config["Authentication:Google:ClientSecret"];
+                    });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });

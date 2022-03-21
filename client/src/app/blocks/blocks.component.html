@@ -1,5 +1,5 @@
 <div class="text-center mt-3">
-    <h2>{{predicate === 'block' ? 'Members I like' : 'Members who like me'}}</h2>
+    <h2>{{predicate === 'block' ? 'Members I Blocks' : 'Members who Block me'}}</h2>
 </div>
 
 <div class="container mt-3">
@@ -13,7 +13,7 @@
                 (click)="loadBlocks()">Members who blocks me</button>
         </div>
         <div class="row mt-3">
-            <div class="col-2" *ngFor="let member of members">
+            <div class="col-6 col-sm-2 col-xl-2" *ngFor="let member of members">
                 <app-member-card [member]="member!"></app-member-card>
             </div>
         </div>

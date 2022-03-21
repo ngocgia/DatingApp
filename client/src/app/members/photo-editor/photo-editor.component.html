@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-2 img-wrapper" *ngFor="let photo of member.photos">
+    <div class="col-6 col-sm-2 col-xl-2 img-wrapper" *ngFor="let photo of member.photos">
         <img src="{{photo.url}}" alt="{{photo.url}}" class="img-thumbnail p-1"
             [class.not-approved]="!photo.isApproved"
         >
@@ -26,7 +26,7 @@
 
 <div class="row mt-3">
  
-    <div class="col-md-3">
+    <div class="col-6 col-sm-3 col-xl-3">
 
         <h3>Add Photos</h3>
 
@@ -46,7 +46,7 @@
         <input type="file" ng2FileSelect [uploader]="uploader" />
     </div>
 
-    <div class="col-md-9" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">
+    <div class="col-6 col-sm-9 col-xl-9" style="margin-bottom: 40px" *ngIf="uploader?.queue?.length">
 
         <h3>Upload queue</h3>
         <p>Queue length: {{ uploader?.queue?.length }}</p>
