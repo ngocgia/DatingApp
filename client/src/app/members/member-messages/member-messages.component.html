@@ -45,18 +45,15 @@
                     class="form-control input-sm" 
                     placeholder="Send a private message">
                 <div class="input-group-append">
-                    <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit">
-                        <i class="fa fa-paper-plane"></i>
+                    <button [disabled]="!messageForm.valid || loading" class="btn btn-primary" type="submit">
+                      <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>  <i class="fa fa-paper-plane"></i>
                     </button>
                 </div>
             </div>
             <emoji-mart class="emoji-mart" 
                 set="google" (emojiSelect)="addEmoji($event)" 
                 *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>
-            <input type='file' [hidden]="true" id="file_attach_upload"
-                accept=".xlsx,.xls,.csv,.doc,.docx">
-            <input type='file' [hidden]="true" id="image_attach_upload"
-                accept=".gif,.jpg,.jpeg,.png">
+          
         </form>
     </div>
 </div>
