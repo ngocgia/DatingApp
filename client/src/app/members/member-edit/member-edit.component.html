@@ -1,13 +1,13 @@
 <div class="row" *ngIf="member">
-    <div class="col-4">
+    <div class="col-12 col-sm-4 col-xl-4">
         <h1>Your profile</h1>
     </div>
-    <div class="col-8">
+    <div class="col-12 col-sm-8 col-xl-8">
         <div class="alert alert-info" *ngIf="editForm.dirty">
             <strong>Information: </strong> You have made changes. Any unsaved changes will be lost.
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-sm-4 col-xl-4">
         <div class="card">
             <div class="d-flex justify-content-center h-100">
                 <div class="image_outer_container">
@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-12 col-sm-8 col-xl-8">
         <tabset class="member-tabset">
             <tab heading='About {{member.knownAs}}'>
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">

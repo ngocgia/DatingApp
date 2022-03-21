@@ -1,5 +1,5 @@
 <div class="row" >
-    <div class="col-4">
+    <div class="col-12 col-sm-4 col-xl-4">
         <div class="card">
             <div  *ngIf="(presence.onlineUsers$ | async)!.includes(member.username)">    
                     <div class="d-flex justify-content-center h-100">
@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div class="col-8">
+    <div class="col-12 col-sm-8 col-xl-8">
         <tabset class="member-tabset" #memberTabs>
             <tab heading='About {{member.knownAs}}' (selectTab)="onTabActivated($event)">
                 <h4>Description</h4>

@@ -1,16 +1,16 @@
-<nav class="color-navbar navbar navbar-expand-lg" id="mainNav">
+<nav class="color-navbar navbar fixed-top navbar-expand-lg" id="mainNav">
   <div class="container px-4 px-lg-5">
     <a class="navbar-brand" routerLink='/' routerLinkActive='active'>
       <img class="logo" src="./tim.png" alt="">
       Dating App
     </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      Menu
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
       <i class="fa fa-bars"></i>
     </button>
+    <!-- <i class="fa fa-bars"></i> -->
 
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-      <ul class="navbar-nav mr-auto py-4 py-lg-0">
+    <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <ng-container *ngIf="accountService.currentUser$ | async">
           <li class="nav-item ">
             <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/members' routerLinkActive='active'>{{'navbar.matches' | translate}}</a>
@@ -30,10 +30,10 @@
           <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
             <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/admin' routerLinkActive='active'>Admin</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/errors' routerLinkActive='active'>{{'navbar.error' | translate}}</a>
+          </li>
         </ng-container>
-        <li class="nav-item">
-          <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/errors' routerLinkActive='active'>{{'navbar.error' | translate}}</a>
-        </li>
       </ul>
       <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
         <img class="avatar" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
@@ -65,7 +65,7 @@
           </a>
         </div>
       </div>
-      <div *ngIf="(accountService.currentUser$ | async) == null">
+      <div  id="navbarResponsive" *ngIf="(accountService.currentUser$ | async) == null">
         <button routerLink='login' class="btn btn-primary">Login</button>
       </div>
     </div>
