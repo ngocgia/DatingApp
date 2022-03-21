@@ -15,9 +15,6 @@ export class MemberMessagesComponent implements OnInit {
   showEmojiPicker = false;
   loading = false;
 
-
-
-  
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -45,15 +42,5 @@ export class MemberMessagesComponent implements OnInit {
       this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
     })
   }
-  
-  clickFile(){
-    document.getElementById("file_attach_upload")?.click();
-  
-  }
-  clickImage(){
-    document.getElementById("image_attach_upload")?.click();
-  }
-
-  
   
 }
