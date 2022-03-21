@@ -31,11 +31,17 @@ export class PresenceService {
       .catch(error => console.log(error));
 
     this.hubConnection.on('UserIsOnline', username => {
-      this.toastr.info(username + " đã online");
+      this.onlineUsers$.pipe(take(1)).subscribe(usernames => {
+        this.onlineUsersSource.next([...usernames, username]);
+        this.toastr.info(username + " đã online");
+      })
     })
 
     this.hubConnection.on('UserIsOffline', username => {
-      this.toastr.warning(username + " đã offline");
+      // this.toastr.warning(username + " đã offline");
+      this.onlineUsers$.pipe(take(1)).subscribe(usernames => {
+        this.onlineUsersSource.next([...usernames.filter(x => x !== username)])
+      })
     })
 
     this.hubConnection.on('GetOnlineUsers', (usernames: string[]) =>{
@@ -46,7 +52,7 @@ export class PresenceService {
       this.toastr.info(knownAs + " đã gửi tin nhắn mới cho bạn")
         .onTap
         .pipe(take(1))
-        .subscribe(() => this.router.navigateByUrl('/members/' + username + '?tab=3'));
+        .subscribe(() => this.router.navigateByUrl('/members/' + username + '?tab=4'));
     })
   }
   stopHubConnection(){
