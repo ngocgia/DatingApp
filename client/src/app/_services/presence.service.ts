@@ -52,7 +52,7 @@ export class PresenceService {
       this.toastr.info(knownAs + " đã gửi tin nhắn mới cho bạn")
         .onTap
         .pipe(take(1))
-        .subscribe(() => this.router.navigateByUrl('/members/' + username + '?tab=4'));
+        .subscribe(() => this.router.navigateByUrl('/members/' + username + '?tab=3'));
     })
   }
   stopHubConnection(){
