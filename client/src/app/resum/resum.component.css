@@ -1,0 +1,51 @@
+
+.name{
+    position: relative;;
+}
+.marker::after{
+    content: "";
+    width: 125px;
+    height: 30px;
+    position: absolute;
+    bottom: -25px;
+    right: 250px;
+    background-image: url(../../assets/marker.svg);
+    background-repeat: no-repeat;
+}
+
+.social-nav ul li{
+    list-style: none;
+    margin-left: 40px;
+}
+.wave-bg{
+    display: block;
+    height: 150px;
+}
+.my-btn{
+    padding: 15px 15px;
+    background-color: #f6e05e;
+    border-radius: 20px;
+    color: #333;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.avatar{
+    border-radius: 20px;
+    margin-left: 100px;
+}
+h1{
+    position: relative;
+}
+.marker-center{
+    content: "";
+    width: 125px;
+    height: 30px;
+    position: absolute;
+    bottom: -30px;
+    right: 45%;
+    background-image: url(../../assets/marker.svg);
+    background-repeat: no-repeat;
+
+}

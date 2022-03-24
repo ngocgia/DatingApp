@@ -18,6 +18,7 @@ import { BlocksComponent } from './blocks/blocks.component';
 import { LoginComponent } from './login/login.component';
 import { BlogsListComponent } from './blogs/blogs-list/blogs-list.component';
 import { BlogComponent } from './blogs/blog/blog.component';
+import { ResumComponent } from './resum/resum.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
     ],
   },
   { path: 'login', component: LoginComponent },
+  { path: 'resum', component: ResumComponent },
   { path: 'errors', component: TestErrorsComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
