@@ -7,7 +7,7 @@ export class UserParams {
     pageNumber = 1;
     pageSize = 10;
     orderBy = 'lastActive';
-    interests!: string;
+    // interests!: string;
 
     constructor(user: User) {
         this.gender = user.gender === 'female' ? 'male' : 'female';

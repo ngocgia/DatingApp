@@ -39,7 +39,7 @@
         [formControl]='$any(registerForm.controls["dateOfBirth"])' 
         [label]='"Date Of Birth"' [maxDate]='maxDate'></app-date-input>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
             <label  class="control-lable" style="margin-right: 10px;">Interests:</label>
             <label class="radio">
                 <input type="radio" value="book" formControlName="interests">Book
@@ -53,7 +53,7 @@
             <label class="radio">
                 <input type="radio" value="music" formControlName="interests" class="ml-3">Music
             </label>
-        </div>
+        </div> -->
 
         <div class="row mt-5" *ngIf="validationErrors.length > 0">
             <ul class="text-danger">

@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -14,7 +16,7 @@ export class AccountService {
   private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient, private presence:PresenceService) { }
+  constructor(private http: HttpClient, private presence:PresenceService, private toastr: ToastrService,private router: Router) { }
 
   login(model:any){
     return this.http.post<User>(this.baseUrl + "account/login", model).pipe(
@@ -45,7 +47,6 @@ export class AccountService {
     Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
     localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
-    console.log('userlogin: ',user);
   }
 
   logout(){
@@ -62,7 +63,8 @@ export class AccountService {
     this.http.post(this.baseUrl + "account/google-login", google)
       .subscribe((response : any)=> {
         const user = response;
-        console.log("loggin gg:", user)
+        this.toastr.success("Đăng nhập thành công!!😍")
+        this.router.navigateByUrl('/members');
         if (user){
           this.setCurrentUser(user);
           this.presence.createHubConnection(user);

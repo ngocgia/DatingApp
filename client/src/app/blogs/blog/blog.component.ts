@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
 import { User } from 'src/app/_models/user';
@@ -23,6 +24,7 @@ export class BlogComponent implements OnInit {
   ngOnInit(): void {
     this.getBlog();
     console.log(this.user.username);
+    console.log(this.blogs)
   }
 
   getBlog(){
@@ -30,6 +32,7 @@ export class BlogComponent implements OnInit {
     console.log(blogId);
     this.blogService.getBlog(blogId).subscribe(blogs =>{
       this.blogs = blogs;
+      console.log(this.blogs)
     })
   }
   deleteBlog(id: number){
