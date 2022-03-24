@@ -38,7 +38,7 @@ export class RegisterComponent implements OnInit {
       password: ['', [Validators.required, 
         Validators.minLength(4), Validators.maxLength(8)]],
       confirmPassword: ['', [Validators.required, this.matchValues('password')]],
-      interests: ['all', Validators.required],
+      // interests: ['all', Validators.required],
     })
     this.registerForm.controls.password.valueChanges.subscribe(()=>{
       this.registerForm.controls.confirmPassword.updateValueAndValidity();

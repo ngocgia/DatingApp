@@ -22,14 +22,14 @@
             </select>
            
         </div>
-        <div class="form-group px-1">
+        <!-- <div class="form-group px-1">
             <label>Interests:</label>
             <select name="interest" class="form-control ml-1" [(ngModel)]="userParams.interests" style="width: 100px;">
                 <option *ngFor="let interest of interestsList" [value]="interest.value">
                     {{interest.display}}
                 </option>
             </select>
-        </div>
+        </div> -->
         <button class="btn btn-primary ml-1" type="submit">Apply Filters</button>
         <button (click)="resetFilters()" class="btn btn-info ml-1" type="submit">Reset Filters</button>
 

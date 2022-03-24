@@ -26,13 +26,11 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.authState.subscribe((user) => {
       this.socialUser = user;
       this.isLoggedin = user != null;
-      console.log(this.socialUser);
     });
   }
 
   login() {
     this.accountService.login(this.model).subscribe(response => {
-      console.log(response);
       this.toastr.success("Đăng nhập thành công!!😍")
       this.router.navigateByUrl('/members');
     }, error =>{
@@ -49,7 +47,6 @@ export class LoginComponent implements OnInit {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).
     then( res => {
       const user: SocialUser = { ...res };
-      console.log(res);
       const googleAuth: Google = {
         provider: user.provider,
         idToken: user.idToken
