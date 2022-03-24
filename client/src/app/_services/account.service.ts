@@ -60,7 +60,14 @@ export class AccountService {
 
   validateGoogleAuth(google: Google) {
     this.http.post(this.baseUrl + "account/google-login", google)
-      .subscribe();
+      .subscribe((response : any)=> {
+        const user = response;
+        console.log("loggin gg:", user)
+        if (user){
+          this.setCurrentUser(user);
+          this.presence.createHubConnection(user);
+        }
+      });
   }
 }
 

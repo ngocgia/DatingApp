@@ -14,7 +14,7 @@ import { CommentService } from 'src/app/_services/comment.service';
 })
 export class CommentListComponent implements OnInit {
  @Input() comments!: Comment[];
- isEditable: boolean = false;
+ deleteConfirm: boolean = false;
  user!:User;
   constructor(public accountService: AccountService,private commentService : CommentService, private route: ActivatedRoute, private toastr: ToastrService,) {
     this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
@@ -29,8 +29,11 @@ export class CommentListComponent implements OnInit {
       this.toastr.info("Blog comment deleted.");
     })
   }
-  editComment(blogCommentId: number){
-   console.log(blogCommentId);
+  showDeleteConfirm() {
+    this.deleteConfirm = true;
+  }
+  CancelDeleteConfirm() {
+    this.deleteConfirm = false;
   }
   
 }
