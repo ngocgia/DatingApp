@@ -7,6 +7,18 @@
         "matches" : "Matches",
         "list" : "List",
         "message": "Message",
-        "error": "Error"
+        "error": "Error",
+        "blog": "Blog",
+        "blocks": "Blocks",
+        "editProfile": "Edit Profile",
+        "languages": "Languages",
+        "logout": "Logout"
+    },
+    "home":{
+        "title":"Find your match",
+        "text":"Come on in to view your matches ... all you need to do is sign up!",
+        "register": "Register",
+        "more": "Learn More"
     }
+
 }

@@ -55,7 +55,7 @@ export class BlogFormComponent implements OnInit, OnDestroy {
     this.blogService.createBlog(this.blogForm.value).subscribe(response =>{
       this.toastr.success("Tạo blog thành công!!😍");
       this.cancel();
-      window.location.reload();
+      // window.location.reload();
     }, error =>{
       this.validationErrors = error;
       this.toastr.error("Đăng bài thất bại!!😢");

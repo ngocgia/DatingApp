@@ -22,10 +22,10 @@
             <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/messages' routerLinkActive='active'>{{'navbar.message' | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/blogs' routerLinkActive='active'>Blog</a>
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/blogs' routerLinkActive='active'>{{'navbar.blog' | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/blocks' routerLinkActive='active'>Blocks</a>
+            <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/blocks' routerLinkActive='active'>{{'navbar.blocks' | translate}}</a>
           </li>
           <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
             <a class="nav-link px-lg-3 py-3 py-lg-4" routerLink='/admin' routerLinkActive='active'>Admin</a>
@@ -40,14 +40,14 @@
         <a class="dropdown-toggle text-secondary ml-2" dropdownToggle>{{user.knownAs || user.username | titlecase}}</a>
         <div class="dropdown-menu" *dropdownMenu>
           <a class="dropdown-item" routerLink='/member/edit'>
-            Edit Profile
+            {{'navbar.editProfile' | translate}}
           </a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item">
             <div class="btn-group" dropdown>
               <div class="translate">
                <a class="translate dropdown-toggle" dropdownToggle aria-controls="dropdown-animated">
-                Languages
+                {{'navbar.languages' | translate}}
                  <span class="caret"></span>
                </a>
               </div>
@@ -61,7 +61,7 @@
           </a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" (click)="logout()">
-            Logout
+            {{'navbar.logout' | translate}}
           </a>
         </div>
       </div>

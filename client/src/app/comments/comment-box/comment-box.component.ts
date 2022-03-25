@@ -41,11 +41,11 @@ export class CommentBoxComponent implements OnInit {
       this.toastr.success("CMT thành công!!😍");
       this.commentForm.reset();
       window.location.reload();
-      console.log("dúng",response);
     }, error =>{
       this.toastr.error("CMT thất bại!!😢");
     });
   }
+
 
   toggleEmojiPicker(){
     this.showEmojiPicker = !this.showEmojiPicker;
