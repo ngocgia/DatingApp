@@ -57,6 +57,7 @@ import { CommentBoxComponent } from './comments/comment-box/comment-box.componen
 import { CommentSystemComponent } from './comments/comment-system/comment-system.component';
 import { BlogManagementComponent } from './admin/blog-management/blog-management.component';
 import { ResumComponent } from './resum/resum.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -102,6 +103,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ResumComponent
   ],
   imports: [
+    Ng2SearchPipeModule,
     SocialLoginModule,
     BrowserModule,
     AppRoutingModule,

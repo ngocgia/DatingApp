@@ -13,7 +13,9 @@ export class MemberMessagesComponent implements OnInit {
   @Input() username: string = "";
   messageContent: string = "";
   showEmojiPicker = false;
-
+  showMore = false;
+  showSearch = false;
+  content!:string;
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -27,6 +29,12 @@ export class MemberMessagesComponent implements OnInit {
   }
   toggleEmojiPicker(){
     this.showEmojiPicker = !this.showEmojiPicker;
+  }
+  showMoreIcon(){
+    this.showMore = !this.showMore;
+  }
+  showSearchMessage(){
+    this.showSearch = !this.showSearch;
   }
   addEmoji(event:any) {
     const { messageContent } = this;
