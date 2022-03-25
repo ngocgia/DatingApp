@@ -180,6 +180,21 @@ namespace API.Controllers
 
             return Ok();
         }
+        [Authorize(Policy = "RequireAdminRole")]
+        [HttpDelete("delete-blog/{blogId}")]
+        public async Task<ActionResult> DeleteBlog(int blogId)
+        {
+           var blog = await _unitOfWork.BlogsRepository.GetBlogId(blogId);
+
+            if (blog == null){
+                return NotFound("Could not find blogs");
+            } else {
+                _unitOfWork.BlogsRepository.DeleteBlog(blog);
+            }
+            await _unitOfWork.Complete();
+
+            return Ok();
+        }
 
     }
 }

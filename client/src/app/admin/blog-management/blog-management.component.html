@@ -1,23 +1,65 @@
-<div class='row'>
-    <table class="table">
-        <thead>
-            <tr>
-                <th style="width: 20%;">Title</th>
-                <th style="width: 20%;">Username</th>
-                <th style="width: 20%;"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let blog of blogs">
-                <td><a routerLink='/blogs/{{blog.id}}'>{{blog.title}}</a></td>
-                <td><a routerLink="/members/{{blog.username}}">{{blog.username}}</a></td>
-                <td>
-                    <button class='btn btn-sm btn-success mr-1' (click)='approveBlog(blog.id)'>Approve</button>
-                    <button class='btn btn-sm btn-danger' (click)='rejectBlog(blog.id)'>Reject</button>
-                </td>
-             
-            </tr>
-        </tbody>
 
-    </table>
+<div class="tab-panel">
+    <tabset class="member-tabset">
+        <tab heading="Approve">
+            <div class="container">
+                <div class='row'>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="width: 20%;">Title</th>
+                                <th style="width: 20%;">Username</th>
+                                <th style="width: 20%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let blog of blogs">
+                                <td><a routerLink='/blogs/{{blog.id}}'>{{blog.title}}</a></td>
+                                <td><a routerLink="/members/{{blog.username}}">{{blog.username}}</a></td>
+                                <td>
+                                    <button class='btn btn-sm btn-success mr-1' (click)='approveBlog(blog.id)'>Approve</button>
+                                    <button class='btn btn-sm btn-danger' (click)='rejectBlog(blog.id)'>Reject</button>
+                                </td>
+                             
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </tab>
+        <tab heading="Delete">
+            <div class="container">
+                <div class="col-md-12 col-lg-12 col-xl-12" *ngFor="let blog of blogss">
+                    <div class="d-flex justify-content-between mt-2" >
+                        <div >
+                            <a routerLink='/blogs/{{blog?.id}}'>{{blog?.id}}</a>
+                       </div>  
+                       <div >
+                            <a routerLink='/blogs/{{blog?.id}}'>{{blog?.title}}</a>
+                       </div>    
+                       <div >
+                            <a routerLink='/blogs/{{blog?.id}}'>{{blog?.username}}</a>
+                       </div>    
+                        <div >
+                            <button class='btn btn-sm btn-danger' (click)='deleteBlog(blog!.id)'>Delete</button>
+                        </div>   
+                    </div>
+                    <hr>  
+                </div>
+            </div>
+            <div class="d-flex justify-content-center mt-3" *ngIf="pagination">
+                <pagination 
+                    [boundaryLinks]="true" 
+                    [totalItems]="pagination.TotalItems"
+                    [itemsPerPage]="pagination.ItemsPerPage"
+                    [(ngModel)] = "pagination.CurrentPage"
+                    (pageChanged)="pageChanged($event)"
+                    previousText="&lsaquo;" 
+                    nextText="&rsaquo;" 
+                    firstText="&laquo;" 
+                    lastText="&raquo;">
+                </pagination>
+            </div>
+        </tab>
+    </tabset>
 </div>
