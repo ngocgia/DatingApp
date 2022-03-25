@@ -4,10 +4,18 @@ autocomplete="off">
         <div class="d-flex flex-row align-items-start">
             <img class="rounded-circle" src="{{user.photoUrl || './assets/user.png'}}" width="40">
             <textarea class="form-control ml-1 shadow-none textarea"
+            name="commentContent"
+            [(ngModel)]="commentContent"
             [formControl]="$any(commentForm.controls['content'])" placeholder="Viết bình luận của bạn ..."></textarea>
         </div>
         <div class="mt-2 text-right">
+            <button type="button"
+            class="toggle-emoji btn"
+            (click)="toggleEmojiPicker()"><i-feather name="Smile" class="someclass"></i-feather></button> 
             <button class="btn btn-primary btn-sm shadow-none" type="submit">Post comment</button>
             <button class="btn btn-outline-primary btn-sm ml-1 shadow-none" type="reset">Cancel</button></div>
-    </div>    
+    </div> 
+    <emoji-mart class="emoji-mart" 
+                set="google" (emojiSelect)="addEmoji($event)" 
+                *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>  
 </form>

@@ -8,16 +8,18 @@
             </div>
             <div class="bg-white ml-auto p-2" *ngIf="comment.username === user.username">
                 <div class="d-flex flex-row ">
-                    <div class="like cursor mr-2" (click)="showDeleteConfirm()"><i-feather name="x" class="size"></i-feather></div>
+                    <div class="like cursor mr-2" (click)="showDeleteConfirm()"><i-feather name="x" class="size"></i-feather></div>   
                 </div>
             </div>
         </div>
         <div class="mt-2">
             <p class="comment-text">{{comment.content}}</p>
-            <div *ngIf="deleteConfirm">
-                Sure?
-                <button class="btn btn-link p-1" (click)="deleteComment(comment.blogCommentId)">Yes</button>
-                <button class="btn btn-link p-1" (click)="CancelDeleteConfirm()">No</button>
+            <div  *ngIf="comment.username === user.username">
+                <div *ngIf="deleteConfirm">
+                    Sure?
+                    <button class="btn btn-link p-1" (click)="deleteComment(comment.blogCommentId)">Yes</button>
+                    <button class="btn btn-link p-1" (click)="CancelDeleteConfirm(comment.blogCommentId)">No</button>
+                </div>
             </div>
         </div>
     </div>

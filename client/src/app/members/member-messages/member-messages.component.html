@@ -1,10 +1,20 @@
 <div class="card">
+    <div *ngIf="showSearch" class="search">
+        <input class="search-form" 
+            type="text" name="search"
+            [(ngModel)]="content"  
+            autocomplete="off" 
+            placeholder="Start searching for a message by content">
+        <i-feather (click)="showSearchMessage()" name="x" class="icon-search someclass"></i-feather>
+    </div>
     <div #scroll [scrollTop]="scroll.scrollHeight" class="card-body">
+
         <div *ngIf="(messageService.messageThread$ | async)?.length === 0">
             Không có tin nhắn...
         </div>
+
         <ul *ngIf="(messageService.messageThread$ | async)?.length! > 0" class="chat">
-            <li *ngFor="let message of (messageService.messageThread$ | async)">
+            <li *ngFor="let message of (messageService.messageThread$ | async)| filter: content" >
                 <div>
                     <span class="chat-img float-right">
                         <img src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="message.senderUsername" class="rounded-circle">
@@ -30,6 +40,29 @@
         </ul>
     </div>
     <div class="card-footer">
+
+       <div> 
+           <i-feather (click)="showMoreIcon()" name="more-vertical" class="icon someclass"></i-feather>
+           <div *ngIf="showMore" class="showMore">
+                <div>
+                    <i-feather name="phone" class="someclass"></i-feather>
+                    <span>Call</span>
+                </div>
+                <div>
+                    <i-feather name="video" class="someclass mt-3"></i-feather>
+                    <span>Video Call</span>
+                </div>
+                <div>
+                    <i-feather name="paperclip" class="someclass mt-3"></i-feather>
+                    <span>Send File</span>
+                </div>
+                <div (click)="showSearchMessage()">
+                    <i-feather name="search" class="someclass mt-3"></i-feather>
+                    <span>Search message</span>
+                </div>
+           </div>
+        </div>
+
         <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
             <div class="input-group">
                 <button type="button"
@@ -51,7 +84,6 @@
             <emoji-mart class="emoji-mart" 
                 set="google" (emojiSelect)="addEmoji($event)" 
                 *ngIf="showEmojiPicker" title="Pick your emoji…"></emoji-mart>
-          
         </form>
     </div>
 </div>

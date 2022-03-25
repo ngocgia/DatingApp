@@ -14,6 +14,9 @@ export class MemberMessagesComponent implements OnInit {
   messageContent: string = "";
   showEmojiPicker = false;
   loading = false;
+  showMore = false;
+  showSearch = false;
+  content!:string;
 
   constructor(public messageService: MessageService) { }
 
@@ -30,10 +33,15 @@ export class MemberMessagesComponent implements OnInit {
   toggleEmojiPicker(){
     this.showEmojiPicker = !this.showEmojiPicker;
   }
+  showMoreIcon(){
+    this.showMore = !this.showMore;
+  }
+  showSearchMessage(){
+    this.showSearch = !this.showSearch;
+  }
   addEmoji(event:any) {
     const { messageContent } = this;
     const text = `${messageContent}${event.emoji.native}`;
-
     this.messageContent = text;
     this.showEmojiPicker = false;
   }

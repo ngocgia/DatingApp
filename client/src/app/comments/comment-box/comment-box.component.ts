@@ -17,6 +17,8 @@ export class CommentBoxComponent implements OnInit {
   @Input() blogId!: number;
   commentForm!: FormGroup;
   user!: User;
+  commentContent: string = "";
+  showEmojiPicker = false;
   constructor(private toastr: ToastrService,private accountService: AccountService,
     private route: ActivatedRoute, private formBuilder: FormBuilder, private commentService: CommentService) { 
       this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
@@ -30,7 +32,7 @@ export class CommentBoxComponent implements OnInit {
     const blogId = parseInt(this.route.snapshot.paramMap.get('id')!);
     this.commentForm = this.formBuilder.group({
       blogsId: [blogId],
-      content : ['']
+      content : [''],
     });
   }
   createComment(){
@@ -43,6 +45,16 @@ export class CommentBoxComponent implements OnInit {
     }, error =>{
       this.toastr.error("CMT thất bại!!😢");
     });
+  }
+
+  toggleEmojiPicker(){
+    this.showEmojiPicker = !this.showEmojiPicker;
+  }
+  addEmoji(event:any) {
+    const { commentContent } = this;
+    const text = `${commentContent}${event.emoji.native}`;
+    this.commentContent = text;
+    this.showEmojiPicker = false;
   }
 
 }
