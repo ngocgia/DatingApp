@@ -25,6 +25,7 @@ export class CommentListComponent implements OnInit {
 
   deleteComment(blogCommentId: number ){
     this.commentService.deleteComment(blogCommentId).subscribe(()=>{
+  
       this.comments?.splice(this.comments.findIndex(x => x?.blogCommentId === blogCommentId), 1);
       this.toastr.info("Blog comment deleted.");
     })
@@ -32,7 +33,7 @@ export class CommentListComponent implements OnInit {
   showDeleteConfirm() {
     this.deleteConfirm = true;
   }
-  CancelDeleteConfirm() {
+  CancelDeleteConfirm(blogCommentId: number) {
     this.deleteConfirm = false;
   }
   

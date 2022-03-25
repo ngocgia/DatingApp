@@ -14,9 +14,6 @@ export class MemberMessagesComponent implements OnInit {
   messageContent: string = "";
   showEmojiPicker = false;
 
-
-
-  
   constructor(public messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -34,7 +31,6 @@ export class MemberMessagesComponent implements OnInit {
   addEmoji(event:any) {
     const { messageContent } = this;
     const text = `${messageContent}${event.emoji.native}`;
-
     this.messageContent = text;
     this.showEmojiPicker = false;
   }
