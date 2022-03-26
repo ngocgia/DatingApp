@@ -32,10 +32,8 @@ export class MemberPostComponent implements OnInit {
   }
 
   getBlogByUsername(){
-
     this.blogService.getBlogByUserName(this.member.username).subscribe(blog => {
       this.blogs = blog;
-      console.log("Day laf ben getBlogUSER",this.username);
     })
   }
 }

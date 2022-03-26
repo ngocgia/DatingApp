@@ -34,7 +34,6 @@ export class BlogManagementComponent implements OnInit {
   approveBlog(blogId: any) {
     this.adminService.approveBlog(blogId).subscribe(() => {
       this.blogs.splice(this.blogs.findIndex(p => p.id === blogId), 1);
-      console.log()
     })
   }
 
@@ -47,7 +46,6 @@ export class BlogManagementComponent implements OnInit {
     this.loading = true;
     this.adminService.getAllBlogs( this.pageNumber, this.pageSize).subscribe(response => {
       this.blogss = response.result;
-      console.log("sss",this.blogss)
       this.pagination = response.pagination;
       this.loading = false;
     })

@@ -42,7 +42,6 @@ export class MemberEditComponent implements OnInit {
   loadBlogByUserName(){
     this.blogService.getBlogByUserName(this.user.username).subscribe(blog => {
       this.blogs = blog;
-      console.log("ben edit", this.member.username);
     })
   }
 

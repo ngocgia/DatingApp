@@ -24,7 +24,6 @@ export class CommentsComponent implements OnInit {
     this.loading = true;
     this.adminService.getAllComment( this.pageNumber, this.pageSize).subscribe(response => {
       this.comments = response.result;
-      console.log("sss",this.comments)
       this.pagination = response.pagination;
       this.loading = false;
     })

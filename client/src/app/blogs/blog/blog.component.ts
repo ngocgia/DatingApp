@@ -23,8 +23,6 @@ export class BlogComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBlog();
-    console.log(this.user.username);
-    console.log(this.blogs)
   }
 
   getBlog(){
@@ -32,7 +30,6 @@ export class BlogComponent implements OnInit {
     console.log(blogId);
     this.blogService.getBlog(blogId).subscribe(blogs =>{
       this.blogs = blogs;
-      console.log(this.blogs)
     })
   }
   deleteBlog(id: number){
