@@ -52,7 +52,14 @@ export class AdminService {
     let params = getPaginationHeaders(pageNumber, pageSize);
     return getPaginatedResult<Partial<Blogs[]>>(this.baseUrl + 'blogs', params, this.http);
   }
+  getAllComment(pageNumber : number, pageSize: number) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+    return getPaginatedResult<Partial<Comment[]>>(this.baseUrl + 'blogComment', params, this.http);
+  }
   deleteBlog(blogId: number){
     return this.http.delete(this.baseUrl + 'admin/delete-blog/' + blogId);
+  }
+  deleteComment(blogCommentId: number){
+    return this.http.delete(this.baseUrl + 'admin/delete-comment/' + blogCommentId);
   }
 }
