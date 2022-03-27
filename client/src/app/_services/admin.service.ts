@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { Blogs } from '../_models/blog';
 import { Photo } from '../_models/photo';
 import { User } from '../_models/user';
+import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
 @Injectable({
   providedIn: 'root'
@@ -46,5 +47,19 @@ export class AdminService {
 
   deleteUser(username: string){
     return this.http.delete(this.baseUrl + "admin/delete-user/" + username);
+  }
+  getAllBlogs(pageNumber : number, pageSize: number) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+    return getPaginatedResult<Partial<Blogs[]>>(this.baseUrl + 'blogs', params, this.http);
+  }
+  getAllComment(pageNumber : number, pageSize: number) {
+    let params = getPaginationHeaders(pageNumber, pageSize);
+    return getPaginatedResult<Partial<Comment[]>>(this.baseUrl + 'blogComment', params, this.http);
+  }
+  deleteBlog(blogId: number){
+    return this.http.delete(this.baseUrl + 'admin/delete-blog/' + blogId);
+  }
+  deleteComment(blogCommentId: number){
+    return this.http.delete(this.baseUrl + 'admin/delete-comment/' + blogCommentId);
   }
 }

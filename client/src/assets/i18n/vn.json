@@ -4,9 +4,21 @@
         "password": "Mật khẩu"
     },
     "navbar" : {
-        "matches" : "Khám phá",
+        "matches" : "Phù hợp",
         "list" : "Danh sách",
         "message": "Tin nhắn",
-        "error": "Lỗi"
+        "error": "Lỗi",
+        "blog": "Bài đăng",
+        "blocks": "Chặn",
+        "editProfile": "Chỉnh sửa thông tin ",
+        "languages": "Ngôn ngữ",
+        "logout": "Đăng xuất"  
+    },
+    "home":{
+        "title": "Tìm một nửa của bạn",
+        "text":"Vào để tìm một nửa của bạn ... tất cả những gì bạn cần làm là đăng ký!",
+        "register": "Đăng ký",
+        "more": "Xem thêm"
     }
+
 }

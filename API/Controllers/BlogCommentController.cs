@@ -1,8 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -93,6 +95,16 @@ namespace API.Controllers
         }
 
 
+         [HttpGet]
+        public async Task<ActionResult<IEnumerable<CommentDto>>> GetAllComment([FromQuery] PaginationParams paginationParams)
+        {
 
+            var comment = await _unitOfWork.BlogCommentRepository.GetAllComments(paginationParams);
+
+            Response.AddPaginationHeader(comment.CurrentPage,
+                comment.PageSize, comment.TotalCount, comment.TotalPages);
+
+            return Ok(comment);
+        }
     }
 }

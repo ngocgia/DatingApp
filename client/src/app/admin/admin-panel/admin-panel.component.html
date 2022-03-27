@@ -17,5 +17,10 @@
                 <app-blog-management></app-blog-management>
             </div>
         </tab>
+        <tab heading="Comment managemet" *appHasRole='["Admin", "Moderator"]'>
+            <div class="container">
+                <app-comments></app-comments>
+            </div>
+        </tab>
     </tabset>
 </div>

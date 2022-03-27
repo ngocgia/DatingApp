@@ -1,6 +1,10 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -181,5 +185,35 @@ namespace API.Controllers
             return Ok();
         }
 
+        [Authorize(Policy = "ModeratePhotoRole")]
+        [HttpDelete("delete-blog/{blogId}")]
+        public async Task<ActionResult> DeleteBlog(int blogId)
+        {
+           var blog = await _unitOfWork.BlogsRepository.GetBlogId(blogId);
+
+            if (blog == null){
+                return NotFound("Could not find blogs");
+            } else {
+                _unitOfWork.BlogsRepository.DeleteBlog(blog);
+            }
+            await _unitOfWork.Complete();
+
+            return Ok();
+        }
+        [Authorize(Policy = "ModeratePhotoRole")]
+        [HttpDelete("delete-comment/{blogCommentId}")]
+        public async Task<ActionResult> DeleteComment(int blogCommentId)
+        {
+           var blogComment = await _unitOfWork.BlogCommentRepository.GetCommentAsync(blogCommentId);
+
+            if (blogComment == null){
+                return NotFound("Could not find blogs");
+            } else {
+                _unitOfWork.BlogCommentRepository.DeleteCommentAsync(blogCommentId);
+            }
+            await _unitOfWork.Complete();
+
+            return Ok();
+        }
     }
 }

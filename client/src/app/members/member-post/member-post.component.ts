@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
 import { Member } from 'src/app/_models/member';
@@ -8,6 +8,7 @@ import { BlogsService } from 'src/app/_services/blogs.service';
 import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-member-post',
   templateUrl: './member-post.component.html',
   styleUrls: ['./member-post.component.css']

@@ -1,6 +1,6 @@
 <div class="card">
     <div *ngIf="showSearch" class="search">
-        <input class="search-form" 
+        <input class="search-form form-control" 
             type="text" name="search"
             [(ngModel)]="content"  
             autocomplete="off" 
@@ -40,7 +40,6 @@
         </ul>
     </div>
     <div class="card-footer">
-
        <div> 
            <i-feather (click)="showMoreIcon()" name="more-vertical" class="icon someclass"></i-feather>
            <div *ngIf="showMore" class="showMore">
@@ -52,9 +51,10 @@
                     <i-feather name="video" class="someclass mt-3"></i-feather>
                     <span>Video Call</span>
                 </div>
-                <div>
-                    <i-feather name="paperclip" class="someclass mt-3"></i-feather>
+                <div (click)="showSendFile()">
+                    <i-feather name="paperclip"  class="someclass mt-3"></i-feather>
                     <span>Send File</span>
+                    <input *ngIf="sendFile" type="file" />
                 </div>
                 <div (click)="showSearchMessage()">
                     <i-feather name="search" class="someclass mt-3"></i-feather>
@@ -78,6 +78,7 @@
                 <div class="input-group-append">
                     <button [disabled]="!messageForm.valid || loading" class="btn btn-primary" type="submit">
                       <i *ngIf="loading" class="fa fa-spinner fa-spin"></i>  <i class="fa fa-paper-plane"></i>
+                        <i class="fa fa-paper-plane"></i>
                     </button>
                 </div>
             </div>

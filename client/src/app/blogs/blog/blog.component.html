@@ -10,7 +10,6 @@
                     role="menu" aria-labelledby="button-basic">
                   <li role="menuitem"><a class="dropdown-item" (click)="editToggle()">Edit Blog</a></li>
                   <li role="menuitem"><a class="dropdown-item" (click)="deleteBlog(blogs!.id)">Delete</a></li>
-
                 </ul>
               </div>
         </div>
@@ -35,13 +34,14 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
-                      <div class="col-md-10 col-lg-8 col-xl-7" [innerHTML]="blogs?.content | safe">
-                      </div>
+                
+                <div class="col-md-10 col-lg-10 col-xl-10">
+                      <div [innerHTML]="blogs?.content | safe"></div>
+
                 </div>
             </div>
             <app-comment-system *ngIf="blogs" [blogId]="blogs.id"></app-comment-system>
         </div>
-    </article>
 </div>
 <div *ngIf="editMode" class="container">
     <app-blog-edit (cancelEdit)="cancelEditMode($event)"></app-blog-edit>

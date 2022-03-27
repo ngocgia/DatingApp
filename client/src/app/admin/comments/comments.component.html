@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="col-md-12 col-lg-12 col-xl-12" >
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-2">Comment ID</th>
+                    <th class="col-2">Blog ID</th>
+                    <th class="col-2">Content</th>
+                    <th class="col-2">Username</th>
+                    <th class="col-2">Publish Date</th>
+                    <th class="col-2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let comment of comments">
+                    <td><a routerLink='/blogs/{{comment?.blogsId}}'>{{comment?.blogCommentId}}</a></td>
+                    <td><a routerLink='/blogs/{{comment?.blogsId}}'>{{comment?.blogsId}}</a></td>
+                    <td><a routerLink='/blogs/{{comment?.blogsId}}'>{{comment?.content}}</a></td>
+                    <td><a routerLink="/members/{{comment?.username}}">{{comment?.username}}</a></td>
+                    <td><a routerLink="/members/">{{comment?.publishDate | date:'medium'}}</a></td>
+                    <td>
+                        <button class='btn btn-sm btn-danger' (click)="deleteComment(comment?.blogCommentId)">Delete</button>
+                    </td>
+                 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div *ngIf="comments.length <= 0">
+    <div class="d-flex justify-content-center">
+        <h3 class="mt-5">There are no comment published yet...</h3>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3" *ngIf="pagination">
+    <pagination *ngIf="comments.length > 0"
+        [boundaryLinks]="true" 
+        [totalItems]="pagination.TotalItems"
+        [itemsPerPage]="pagination.ItemsPerPage"
+        [(ngModel)] = "pagination.CurrentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;" 
+        nextText="&rsaquo;" 
+        firstText="&laquo;" 
+        lastText="&raquo;">
+    </pagination>
+</div>

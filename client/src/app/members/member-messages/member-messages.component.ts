@@ -1,8 +1,11 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Message } from 'src/app/_models/message';
+import { User } from 'src/app/_models/user';
 import { MessageService } from 'src/app/_services/message.service';
+
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-member-messages',
   templateUrl: './member-messages.component.html',
   styleUrls: ['./member-messages.component.css']
@@ -15,13 +18,14 @@ export class MemberMessagesComponent implements OnInit {
   showEmojiPicker = false;
   loading = false;
   showMore = false;
+  sendFile = false;
   showSearch = false;
   content!:string;
 
   constructor(public messageService: MessageService) { }
-
+  user!: User;
   ngOnInit(): void {
-    
+  
   }
 
   sendMessage(){
@@ -39,6 +43,9 @@ export class MemberMessagesComponent implements OnInit {
   showSearchMessage(){
     this.showSearch = !this.showSearch;
   }
+  showSendFile(){
+    this.sendFile = !this.sendFile;
+  }
   addEmoji(event:any) {
     const { messageContent } = this;
     const text = `${messageContent}${event.emoji.native}`;
@@ -50,5 +57,5 @@ export class MemberMessagesComponent implements OnInit {
       this.messages.splice(this.messages.findIndex(m => m.id === id), 1);
     })
   }
-  
+
 }

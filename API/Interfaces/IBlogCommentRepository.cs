@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 
 namespace API.Interfaces
 {
@@ -12,5 +13,6 @@ namespace API.Interfaces
         void UpdateCommnetAsync(BlogComment blogComment, int appUserId);
         List<CommentDto> GetAllCommentAsync(int blogId);
         Task<BlogComment> GetCommentAsync(int blogCommentId);
+        Task<PagedList<CommentDto>> GetAllComments(PaginationParams paginationParams);
      }
 }
