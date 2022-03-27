@@ -26,7 +26,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   activeTab!: TabDirective;
   messages: Message[] = [];
   user!: User;
-  
+  showSpam = false;
 
   constructor(public presence: PresenceService,
      private route: ActivatedRoute, 
@@ -76,6 +76,9 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       this.messages = messages;
       console.log(messages);
     })
+  }
+  showSpamIcon(){
+    this.showSpam = !this.showSpam;
   }
 
   selectTab(tabId: number){
