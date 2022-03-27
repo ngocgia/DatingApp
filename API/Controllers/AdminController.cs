@@ -215,5 +215,18 @@ namespace API.Controllers
 
             return Ok();
         }
+
+        [Authorize(Policy = "ModeratePhotoRole")]   
+        [HttpGet("report")]
+        public async Task<ActionResult<IEnumerable<ReportedUser>>> GetAllReportedUser([FromQuery] PaginationParams paginationParams)
+        {
+
+            var reportedUser = await _unitOfWork.ReportRepository.GetAllReportedUser(paginationParams);
+
+            Response.AddPaginationHeader(reportedUser.CurrentPage,
+                reportedUser.PageSize, reportedUser.TotalCount, reportedUser.TotalPages);
+
+            return Ok(reportedUser);
+        }
     }
 }

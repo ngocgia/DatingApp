@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220319031257_IniticalCreate")]
+    [Migration("20220327170403_IniticalCreate")]
     partial class IniticalCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -329,6 +329,57 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("API.Entities.Report", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Reason")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ReportDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("ReportedUsersId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ReportedUsersId");
+
+                    b.ToTable("Report");
+                });
+
+            modelBuilder.Entity("API.Entities.ReportedUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.ToTable("ReportedUser");
+                });
+
             modelBuilder.Entity("API.Entities.UserBlocks", b =>
                 {
                     b.Property<int>("SourceUserId")
@@ -529,6 +580,34 @@ namespace API.Data.Migrations
                     b.Navigation("AppUser");
                 });
 
+            modelBuilder.Entity("API.Entities.Report", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "ReportsUser")
+                        .WithMany("Reports")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Entities.ReportedUser", "ReportedUsers")
+                        .WithMany("Reports")
+                        .HasForeignKey("ReportedUsersId");
+
+                    b.Navigation("ReportedUsers");
+
+                    b.Navigation("ReportsUser");
+                });
+
+            modelBuilder.Entity("API.Entities.ReportedUser", b =>
+                {
+                    b.HasOne("API.Entities.AppUser", "Reported")
+                        .WithMany("ReportedUsers")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Reported");
+                });
+
             modelBuilder.Entity("API.Entities.UserBlocks", b =>
                 {
                     b.HasOne("API.Entities.AppUser", "BlockedUser")
@@ -628,6 +707,10 @@ namespace API.Data.Migrations
 
                     b.Navigation("Photos");
 
+                    b.Navigation("ReportedUsers");
+
+                    b.Navigation("Reports");
+
                     b.Navigation("UserRoles");
                 });
 
@@ -639,6 +722,11 @@ namespace API.Data.Migrations
             modelBuilder.Entity("API.Entities.Group", b =>
                 {
                     b.Navigation("Connections");
+                });
+
+            modelBuilder.Entity("API.Entities.ReportedUser", b =>
+                {
+                    b.Navigation("Reports");
                 });
 #pragma warning restore 612, 618
         }

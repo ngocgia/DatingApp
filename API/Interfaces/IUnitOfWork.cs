@@ -10,6 +10,7 @@ namespace API.Interfaces
         IBlocksRepository BlocksRepository { get; }
         IPhotoRepository PhotoRepository { get; }
         IBlogsRepository BlogsRepository { get; }
+        IReportRepository ReportRepository { get; }
         IBlogCommentRepository BlogCommentRepository { get; }
         Task<bool> Complete();
         bool HasChanges();

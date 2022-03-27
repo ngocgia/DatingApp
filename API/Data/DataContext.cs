@@ -25,6 +25,8 @@ namespace API.Data
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Blogs> Blogs { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<ReportedUser> ReportedUsers{ get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -62,6 +64,12 @@ namespace API.Data
                 .HasOne(s => s.Blogs)
                 .WithMany(l => l.BlogComments)
                 .HasForeignKey(s => s.BlogsId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Report>()
+                .HasOne(s => s.ReportedUsers)
+                .WithMany(l => l.Reports)
+                .HasForeignKey(s => s.ReportedUsersId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // ======================BLOCK===========
