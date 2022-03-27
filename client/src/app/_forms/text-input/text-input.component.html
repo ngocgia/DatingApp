@@ -2,7 +2,7 @@
     <input 
         [class.is-invalid] ='ngControl!.touched && ngControl!.invalid'
         type={{type}}
-        class="form-control" 
+        class="form-control col-10 col-sm-12 col-lg-12" 
         [formControl]="$any(ngControl.control)"
         placeholder={{label}}>
     <div *ngIf="ngControl.control!.errors?.required"

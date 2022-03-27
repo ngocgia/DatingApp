@@ -22,5 +22,10 @@
                 <app-comments></app-comments>
             </div>
         </tab>
+        <tab heading="Report managemet" *appHasRole='["Admin", "Moderator"]'>
+            <div class="container">
+                <app-report-management></app-report-management>
+            </div>
+        </tab>
     </tabset>
 </div>

@@ -228,5 +228,33 @@ namespace API.Controllers
 
             return Ok(reportedUser);
         }
+        [HttpGet("report/{reportedUserId}")]
+        public async Task<ActionResult<Report>> GetAllBlogComment(int reportedUserId)
+        {
+            var reportUser = _unitOfWork.ReportRepository.GetAllReportAsync(reportedUserId);
+            if(reportUser != null)
+            {
+                return Ok(reportUser);
+            }
+            if (await _unitOfWork.Complete()) return NoContent();
+
+            return BadRequest("Sai roi kia!");
+        }
+
+        //  [HttpGet("report/{username}")]
+        // public async Task<ActionResult<Report>> GetAllBlogComment(string username)
+        // {
+        //     var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+
+        //     if(user == null) return BadRequest("Not found user");
+        //     var reportUser = _unitOfWork.ReportRepository.GetAllReportAsync(User.GetUserId());
+        //     if(reportUser != null)
+        //     {
+        //         return Ok(reportUser);
+        //     }
+        //     if (await _unitOfWork.Complete()) return NoContent();
+
+        //     return BadRequest("Sai roi kia!");
+        // }
     }
 }

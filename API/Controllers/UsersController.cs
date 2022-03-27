@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -137,6 +138,31 @@ namespace API.Controllers
             if (await _unitOfWork.Complete()) return Ok();
 
             return BadRequest("Failed to delete the photo");
+        }
+
+         [HttpPost("report")]
+        public async Task<ActionResult<Report>> Reports(Report report)
+        {
+           try
+            {
+                var user = await _unitOfWork.UserRepository.GetUserByUsernameAsync(User.GetUsername());
+                var newReport = new Report
+                {
+                    Id = report.Id,
+                    ReportedUsersId = report.ReportedUsersId,
+                    AppUserId = user.Id,
+                    Username = user.UserName,
+                    Reason = report.Reason,
+                    ReportDate = DateTime.UtcNow,
+                };
+               _unitOfWork.ReportRepository.AddReport(newReport);
+                return Ok();
+            }
+            catch (System.Exception)
+            {
+                
+                return BadRequest("sai roi");
+            }
         }
     }
 }

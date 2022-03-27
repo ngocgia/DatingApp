@@ -33,5 +33,24 @@ namespace API.Data
 
             return await PagedList<ReportedUser>.CreateAsync(reported, paginationParams.PageNumber, paginationParams.PageSize);
         }
+        public List<Report> GetAllReportAsync(int reportedUserId)
+        {
+            return _context.Reports
+                        .Where(x => x.ReportedUsersId.Equals(reportedUserId))
+                        .OrderByDescending(x => x.Id)
+                        .ToList();
+        }
+        // public List<Report> GetAllReportAsync(int AppUserId)
+        // {
+        //     return _context.Reports
+        //                 .Where(x => x.ReportedUsersId.Equals(AppUserId))
+        //                 .OrderByDescending(x => x.Id)
+        //                 .ToList();
+        // }
+        public void AddReport(Report report)
+        {
+            _context.Reports.Add(report);
+            _context.SaveChanges();
+        }
     }
 }

@@ -47,7 +47,6 @@ export class BlogManagementComponent implements OnInit {
     this.loading = true;
     this.adminService.getAllBlogs( this.pageNumber, this.pageSize).subscribe(response => {
       this.blogss = response.result;
-      console.log("sss",this.blogss)
       this.pagination = response.pagination;
       this.loading = false;
     })

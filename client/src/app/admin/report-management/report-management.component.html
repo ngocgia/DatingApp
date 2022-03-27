@@ -1,0 +1,32 @@
+<div class="row">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width: 20%;">Id</th>
+                <th style="width: 20%;">Username</th>
+                <th style="width: 20%;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let report of reporteds">
+                <td ><a (click)="openModalWithComponent()">{{report!.id}}</a></td>
+                <td (click)="getReport(report!.id)">{{report!.username}}</td>
+                <td><button class="btn btn-danger">Lock</button></td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+<div class="d-flex justify-content-center mt-3" *ngIf="pagination">
+    <pagination 
+        [boundaryLinks]="true" 
+        [totalItems]="pagination.TotalItems"
+        [itemsPerPage]="pagination.ItemsPerPage"
+        [(ngModel)] = "pagination.CurrentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;" 
+        nextText="&rsaquo;" 
+        firstText="&laquo;" 
+        lastText="&raquo;">
+    </pagination>
+</div>

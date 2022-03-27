@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Blogs } from '../_models/blog';
 import { Photo } from '../_models/photo';
+import { Reported } from '../_models/reported';
 import { User } from '../_models/user';
 import { getPaginatedResult, getPaginationHeaders } from './paginationHelper';
 
@@ -61,5 +62,13 @@ export class AdminService {
   }
   deleteComment(blogCommentId: number){
     return this.http.delete(this.baseUrl + 'admin/delete-comment/' + blogCommentId);
+  }
+
+  getAllReport(pageNumber : number, pageSize: number){
+    let params = getPaginationHeaders(pageNumber, pageSize); 
+    return getPaginatedResult<Partial<Reported[]>>(this.baseUrl + 'admin/report', params, this.http);
+  }
+  getReport(id : number){
+    return this.http.get(this.baseUrl + 'admin/report/' + id);
   }
 }
