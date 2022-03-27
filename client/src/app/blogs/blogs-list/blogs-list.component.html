@@ -6,13 +6,18 @@
         <div class="d-flex justify-content-end">
             <button class="btn btn-primary" (click)="blogToggle()">Create</button>
         </div>
+        <div *ngIf="blogs.length <= 0">
+            <div class="d-flex justify-content-center">
+                <h3 class="mt-5">There are no blogs published yet...</h3>
+            </div>
+        </div>
         <div class="col-md-10 col-lg-8 col-xl-7"  *ngFor="let blog of blogs">
             <app-blog-card [blog]="blog!"></app-blog-card>
         </div>
     </div>
     
     <div class="d-flex justify-content-center mt-3" *ngIf="pagination">
-        <pagination 
+        <pagination  *ngIf="blogs.length > 0"
             [boundaryLinks]="true" 
             [totalItems]="pagination.TotalItems"
             [itemsPerPage]="pagination.ItemsPerPage"
