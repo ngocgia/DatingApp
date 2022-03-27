@@ -1,9 +1,11 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
+import { SpamModalComponent } from 'src/app/modals/spam-modal/spam-modal.component';
 import { Member } from 'src/app/_models/member';
 import { Message } from 'src/app/_models/message';
 import { User } from 'src/app/_models/user';
@@ -28,12 +30,16 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   user!: User;
   showSpam = false;
 
+  // modal----------
+  bsModalRef?: BsModalRef;
+  
   constructor(public presence: PresenceService,
      private route: ActivatedRoute, 
      private messageService: MessageService,
      private accountService: AccountService,
      private toastr: ToastrService,
-     private memberService: MembersService
+     private memberService: MembersService,
+     private modalService: BsModalService
      ) { 
        this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
      }
@@ -105,6 +111,22 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     this.memberService.addBlock(member.username).subscribe(()=>{
       this.toastr.success("Bạn đã BLOCK " + member.knownAs);
     })
+  }
+
+  openModalWithComponent() {
+    const initialState: ModalOptions = {
+      initialState: {
+        list: [
+          'Open a modal with component',
+          'Pass your data',
+          'Do something else',
+          '...'
+        ],
+        title: 'Modal with component'
+      }
+    };
+    this.bsModalRef = this.modalService.show(SpamModalComponent, initialState);
+    this.bsModalRef.content.closeBtnName = 'Close';
   }
 
 }

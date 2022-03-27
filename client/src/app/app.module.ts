@@ -59,6 +59,7 @@ import { BlogManagementComponent } from './admin/blog-management/blog-management
 import { ResumComponent } from './resum/resum.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CommentsComponent } from './admin/comments/comments.component';
+import { SpamModalComponent } from './modals/spam-modal/spam-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -102,7 +103,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     CommentSystemComponent,
     BlogManagementComponent,
     ResumComponent,
-    CommentsComponent
+    CommentsComponent,
+    SpamModalComponent
   ],
   imports: [
     Ng2SearchPipeModule,

@@ -33,7 +33,7 @@
          
               
             <div class="card-body">
-                <div class="spam" *ngIf="showSpam">
+                <div (click)="openModalWithComponent()" class="spam" *ngIf="showSpam">
                     <i-feather name="alert-circle" class="someclass"></i-feather>
                     <span>Report</span>
                 </div>
