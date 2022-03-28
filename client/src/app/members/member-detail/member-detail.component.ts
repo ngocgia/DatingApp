@@ -1,4 +1,5 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
@@ -19,6 +20,7 @@ import { PresenceService } from 'src/app/_services/presence.service';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit, OnDestroy {
+  @Output() cancelReport = new EventEmitter();
   @ViewChild('memberTabs', {static: true}) memberTabs!: TabsetComponent;
   member!: Member;
   galleryOptions!: NgxGalleryOptions[] ;
@@ -27,6 +29,8 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   messages: Message[] = [];
   user!: User;
   showMore = false;
+  myModal= false;
+  reportForm!: FormGroup;
 
 
   constructor(public presence: PresenceService,
@@ -35,16 +39,19 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
      private accountService: AccountService,
      private toastr: ToastrService,
      private memberService: MembersService,
- 
+     private formBuilder: FormBuilder
      ) { 
        this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
      }
  
   ngOnInit(): void {
+    this.intitializeForm();
+   console.log("form",this.intitializeForm());
    this.route.data.subscribe(data => {
      this.member = data.member;
    })
 
+   console.log(this.member.username);
     this.route.queryParams.subscribe(params => {
       params.tab ? this.selectTab(params.tab) : this.selectTab(0);
     })
@@ -63,6 +70,9 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   }
   showMoreIcon(){
     this.showMore = !this.showMore;
+  }
+  showMyModal(){
+    this.myModal = !this.myModal;
   }
 
   getImages(): NgxGalleryImage[]{
@@ -109,6 +119,25 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
     })
   }
  
+  intitializeForm(){
+    const recipient = this.route.snapshot.paramMap.get('username')!
+    this.reportForm = this.formBuilder.group({
+      recipientReportName: [recipient],
+      reason:[""],
+    });
+  }
+  createReport(){
+    this.memberService.createReport(this.reportForm.value).subscribe(res =>{
+      this.toastr.success("Report thành công!!😁");
+      this.myModal= false;
+    }, error =>{
+      this.toastr.error("Report thất bại!!");
+    })
+  }
+  cancel(){
+    this.cancelReport.emit(false);
+  }
+
 }
 
 

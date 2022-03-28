@@ -4,9 +4,22 @@
     width: 85%;
     height: 85%;
 }
+.mybody{
+    position: relative;
+}
+.myModal{
+    background-color: #ecebeb;
+    position: absolute;
+    padding: 20px;
+    top: 150px;
+    right: 40%;
+    z-index: 100;
+    border-radius: 10px;
+}
 
 .card-body{ 
     padding:0 25px;
+    position: relative;
 }
 .card-footer{
     padding: 10px 15px;
@@ -86,6 +99,7 @@
     right: 50px;
     border-radius: 10px;
 }
+
 @keyframes fa-blink{
     0%{ opacity: 1;}
     100% { opacity: 0.5; }

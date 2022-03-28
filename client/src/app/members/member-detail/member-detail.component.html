@@ -1,4 +1,4 @@
-<div class="row" >
+<div class="row mybody" >
     <div class="col-12 col-sm-4 col-xl-4">
         <div class="card">
             <div  *ngIf="(presence.onlineUsers$ | async)!.includes(member.username)">    
@@ -32,7 +32,7 @@
             </div>
               
             <div class="card-body">
-                <div  class="report" *ngIf="showMore">
+                <div (click)="showMyModal()" class="report" *ngIf="showMore">
                     <i-feather name="alert-circle" class="someclass"></i-feather>
                     <span>Report</span>
                 </div>
@@ -86,4 +86,34 @@
             </tab>
         </tabset>
     </div>
+</div>
+<div class="myModal" *ngIf="myModal">
+    <div style="text-align: center;">
+        <h2 >Report</h2>
+        <p>Please select a problem</p>
+    </div>
+    <hr>
+    <form [formGroup]="reportForm" (ngSubmit)="reportForm.valid && createReport()" autocomplete="off">
+        <div class="form-check d-flex flex-column">
+            <label class="radio-inline">
+                <input type="radio" value="Harmful or spam" formControlName="reason"> Harmful or spam
+            </label>
+            <label class="radio-inline">
+                <input type="radio" value="Not using a real name" formControlName="reason"> Not using a real name
+            </label>
+            <label class="radio-inline">
+                <input type="radio" value="Posting inappropriate Things" formControlName="reason"> Posting inappropriate Things
+            </label>
+            <label class="radio-inline">
+                <input type="radio" value="offensive images" formControlName="reason"> Offensive images
+            </label>
+            <label class="radio-inline">
+                <input type="radio" value="orther" formControlName="reason"> Orther
+            </label>
+        </div>
+        <div class="form-group text-center">
+            <button [disabled]='!reportForm.valid' class="btn btn-success mr-2" type="submit">Report</button>
+            <button class="btn btn-primary mr-2" (click)="showMyModal()" type="button">Cancel</button>
+        </div>
+    </form>
 </div>

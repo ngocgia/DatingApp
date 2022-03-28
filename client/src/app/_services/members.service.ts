@@ -6,6 +6,7 @@ import { map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_models/member';
 import { PaginatedResult } from '../_models/pagination';
+import { Report } from '../_models/report';
 import { User } from '../_models/user';
 import { UserParams } from '../_models/userParams';
 import { AccountService } from './account.service';
@@ -108,5 +109,7 @@ export class MembersService {
     return getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'blocks', params, this.http);
   }
 
-
+  createReport(model: Report){
+    return this.http.post(this.baseUrl + "users/report", model);
+  }
 }
