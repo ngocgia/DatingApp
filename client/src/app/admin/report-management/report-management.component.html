@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="col-md-12 col-lg-12 col-xl-12" >
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="col-2">ID</th>
+                    <th class="col-2">Sender Name</th>
+                    <th class="col-2">Reason</th>
+                    <th class="col-2">Reported Name</th>
+                    <th class="col-2">Date</th>
+                    <th class="col-2"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let report of reports">
+                    <td><a > {{report!.id}}</a></td>
+                    <td><a > {{report!.senderReportName}}</a></td>
+                    <td><a > {{report!.reason}} </a></td>
+                    <td><a > {{report!.recipientReportName}}</a></td>
+                    <td><a > {{report!.reportDate | date: "medium"}}</a></td>
+                    <td>
+                        <button class='btn btn-sm btn-danger' (click)="deleteReport(report!.id)">Delete</button>
+                        <button class='btn btn-sm btn-primary ' >Lock User</button>
+                    </td>
+                 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- <div *ngIf="comments.length <= 0">
+    <div class="d-flex justify-content-center">
+        <h3 class="mt-5">There are no comment published yet...</h3>
+    </div>
+</div> -->
+
+<div class="d-flex justify-content-center mt-3" *ngIf="pagination">
+    <pagination 
+        [boundaryLinks]="true" 
+        [totalItems]="pagination.TotalItems"
+        [itemsPerPage]="pagination.ItemsPerPage"
+        [(ngModel)] = "pagination.CurrentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;" 
+        nextText="&rsaquo;" 
+        firstText="&laquo;" 
+        lastText="&raquo;">
+    </pagination>
+</div>
+

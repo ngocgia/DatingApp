@@ -38,7 +38,6 @@ export class CommentsComponent implements OnInit {
     this.adminService.deleteComment(id).subscribe(()=>{
       this.comments.splice(this.comments.findIndex((x:any) => x?.id === id), 1);
       this.toastr.success("Đã xoá");
-  
     });
   }
 }
