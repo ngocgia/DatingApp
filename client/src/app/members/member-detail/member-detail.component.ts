@@ -1,11 +1,9 @@
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryAnimation, NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
-import { ReportsModalComponent } from 'src/app/modals/reports-modal/reports-modal.component';
 import { Member } from 'src/app/_models/member';
 import { Message } from 'src/app/_models/message';
 import { User } from 'src/app/_models/user';
@@ -29,7 +27,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
   messages: Message[] = [];
   user!: User;
   showMore = false;
-  bsModalRef?: BsModalRef;
+
 
   constructor(public presence: PresenceService,
      private route: ActivatedRoute, 
@@ -37,7 +35,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
      private accountService: AccountService,
      private toastr: ToastrService,
      private memberService: MembersService,
-     private modalService: BsModalService
+ 
      ) { 
        this.accountService.currentUser$.pipe(take(1)).subscribe(user => this.user = user);
      }
@@ -110,19 +108,7 @@ export class MemberDetailComponent implements OnInit, OnDestroy {
       this.toastr.success("Bạn đã BLOCK " + member.knownAs);
     })
   }
-  openModalWithComponent() {
-    const initialState: ModalOptions = {
-      initialState: {
-        list: [
-          {name: 'Spam', value: 'Spam'},
-          {name: 'Offensive images', value: 'Offensive images'},
-        ],
-        title: 'Reason Report'
-      }
-    };
-    this.bsModalRef = this.modalService.show(ReportsModalComponent, initialState);
-    this.bsModalRef.content.closeBtnName = 'Close';
-  }
+ 
 }
 
 
