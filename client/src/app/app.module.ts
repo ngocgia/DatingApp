@@ -60,6 +60,7 @@ import { ResumComponent } from './resum/resum.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CommentsComponent } from './admin/comments/comments.component';
 import { ReportManagementComponent } from './admin/report-management/report-management.component';
+import { ReportsModalComponent } from './modals/reports-modal/reports-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -104,7 +105,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     BlogManagementComponent,
     ResumComponent,
     CommentsComponent,
-    ReportManagementComponent
+    ReportManagementComponent,
+    ReportsModalComponent
   ],
   imports: [
     Ng2SearchPipeModule,
