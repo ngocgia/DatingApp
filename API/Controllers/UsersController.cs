@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -137,6 +138,29 @@ namespace API.Controllers
             if (await _unitOfWork.Complete()) return Ok();
 
             return BadRequest("Failed to delete the photo");
+        }
+
+        [HttpPost("report")]
+        public async Task<ActionResult<ReportDto>> CreateReport(ReportCreateDto reportCreate)
+        {
+        
+            var username = User.GetUsername();
+            if(username == reportCreate.RecipientReportName.ToLower())
+                return BadRequest("You cannot send report to yourself");
+            var sender = await _unitOfWork.UserRepository.GetUserByUsernameAsync(username);
+            var recipient = await _unitOfWork.UserRepository.GetUserByUsernameAsync(reportCreate.RecipientReportName);
+            if(recipient == null) return NotFound();
+            var reports = new Reports
+            {
+                SenderReport = sender,
+                RecipientReport = recipient,
+                SenderReportName = sender.UserName,
+                RecipientReportName = recipient.UserName,
+                Reason = reportCreate.Reason,
+                ReportDate = DateTime.UtcNow
+            };
+            _unitOfWork.ReportRepository.AddReport(reports);
+            return Ok();
         }
     }
 }

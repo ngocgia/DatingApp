@@ -27,6 +27,8 @@ namespace API.Entities
         public ICollection<UserBlocks> BlockedByUser { get; set; }
         public ICollection<Blogs> Blogs { get; set; }
         public ICollection<BlogComment> BlogComments { get; set; }
+        public ICollection<Reports> ReportSent { get; set; }
+        public ICollection<Reports> ReportReceived { get; set; }
 
     }
 }

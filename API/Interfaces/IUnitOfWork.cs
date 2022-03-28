@@ -11,6 +11,7 @@ namespace API.Interfaces
         IPhotoRepository PhotoRepository { get; }
         IBlogsRepository BlogsRepository { get; }
         IBlogCommentRepository BlogCommentRepository { get; }
+        IReportRepository ReportRepository { get; }
         Task<bool> Complete();
         bool HasChanges();
     }

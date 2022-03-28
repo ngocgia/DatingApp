@@ -25,6 +25,7 @@ namespace API.Data
         public DbSet<Connection> Connections { get; set; }
         public DbSet<Blogs> Blogs { get; set; }
         public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<Reports> Reports { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -90,6 +91,17 @@ namespace API.Data
                 .HasOne(u => u.Sender)
                 .WithMany(m => m.MessagesSent)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            // REPORT
+            builder.Entity<Reports>()
+                .HasOne(u => u.RecipientReport)
+                .WithMany(m => m.ReportReceived)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<Reports>()
+                .HasOne(u => u.SenderReport)
+                .WithMany(m => m.ReportSent)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<Photo>().HasQueryFilter(p => p.IsApproved);
              builder.Entity<Blogs>().HasQueryFilter(p => p.IsApproved);

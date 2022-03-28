@@ -24,6 +24,7 @@ namespace API.Data
         public IPhotoRepository PhotoRepository => new PhotoRepository(_context);
         public IBlogsRepository BlogsRepository => new BlogsRepository(_context);
         public IBlogCommentRepository BlogCommentRepository => new BlogCommentRepository(_context, _mapper);
+         public IReportRepository ReportRepository => new ReportRepository(_context, _mapper);
 
 
         public async Task<bool> Complete()

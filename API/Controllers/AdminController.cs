@@ -215,5 +215,33 @@ namespace API.Controllers
 
             return Ok();
         }
+
+        // [Authorize(Policy = "ModeratePhotoRole")]
+        [HttpGet("report")]
+        public async Task<ActionResult<IEnumerable<Reports>>> GetAllReport([FromQuery] PaginationParams paginationParams)
+        {
+
+            var reports = await _unitOfWork.ReportRepository.GetAllReport(paginationParams);
+
+            Response.AddPaginationHeader(reports.CurrentPage,
+                reports.PageSize, reports.TotalCount, reports.TotalPages);
+
+            return Ok(reports);
+        }
+
+        [HttpDelete("delete-report/{id}")]
+        public async Task<ActionResult> DeleteReport(int id)
+        {
+           var report = await _unitOfWork.ReportRepository.GetReport(id);
+
+            if (report == null){
+                return NotFound("Could not find report");
+            } else {
+                _unitOfWork.ReportRepository.DeleteReport(report);
+            }
+            await _unitOfWork.Complete();
+
+            return Ok();
+        }
     }
 }
