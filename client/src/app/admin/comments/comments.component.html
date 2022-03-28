@@ -27,14 +27,14 @@
         </table>
     </div>
 </div>
-<div *ngIf="comments.length <= 0">
+<div *ngIf="comments?.length === 0">
     <div class="d-flex justify-content-center">
         <h3 class="mt-5">There are no comment published yet...</h3>
     </div>
 </div>
 
 <div class="d-flex justify-content-center mt-3" *ngIf="pagination">
-    <pagination *ngIf="comments.length > 0"
+    <pagination *ngIf="comments?.length > 0"
         [boundaryLinks]="true" 
         [totalItems]="pagination.TotalItems"
         [itemsPerPage]="pagination.ItemsPerPage"

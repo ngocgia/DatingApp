@@ -22,10 +22,20 @@
                 </div>
             </div>
 
-            <h3 style="text-align: center;">{{member.knownAs}}</h3>
+            <div class="d-flex justify-content-center">
+                <div>
+                    <h3 style="text-align: center;">{{member.knownAs}}</h3>
+                </div>
+                <div (click)="showMoreIcon()">
+                    <i-feather  name="more-vertical" class="icon someclass"></i-feather>
+                </div>
+            </div>
               
             <div class="card-body">
-               
+                <div class="report" *ngIf="showMore">
+                    <i-feather name="alert-circle" class="someclass"></i-feather>
+                    <span>Report</span>
+                </div>
                 <div>
                     <strong>Location:</strong>
                     <p>{{member.city}}, {{member.country}}</p>

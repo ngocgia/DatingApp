@@ -6,7 +6,7 @@
         <div class="d-flex justify-content-end">
             <button class="btn btn-primary" (click)="blogToggle()">Create</button>
         </div>
-        <div *ngIf="blogs.length <= 0">
+        <div *ngIf="blogs.length === 0">
             <div class="d-flex justify-content-center">
                 <h3 class="mt-5">There are no blogs published yet...</h3>
             </div>
