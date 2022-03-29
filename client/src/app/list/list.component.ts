@@ -13,7 +13,7 @@ export class ListComponent implements OnInit {
   members: Partial<Member[]> = [];
   predicate = 'like';
   pageNumber = 1;
-  pageSize = 5;
+  pageSize = 12;
   pagination!: Pagination;
 
   constructor(private memberService: MembersService) { }
