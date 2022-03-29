@@ -216,7 +216,7 @@ namespace API.Controllers
             return Ok();
         }
 
-        // [Authorize(Policy = "ModeratePhotoRole")]
+        [Authorize(Policy = "ModeratePhotoRole")]
         [HttpGet("report")]
         public async Task<ActionResult<IEnumerable<Reports>>> GetAllReport([FromQuery] PaginationParams paginationParams)
         {
@@ -228,7 +228,7 @@ namespace API.Controllers
 
             return Ok(reports);
         }
-
+        [Authorize(Policy = "ModeratePhotoRole")]
         [HttpDelete("delete-report/{id}")]
         public async Task<ActionResult> DeleteReport(int id)
         {
