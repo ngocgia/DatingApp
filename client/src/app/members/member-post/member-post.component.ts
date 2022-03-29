@@ -8,7 +8,7 @@ import { BlogsService } from 'src/app/_services/blogs.service';
 import { MembersService } from 'src/app/_services/members.service';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-member-post',
   templateUrl: './member-post.component.html',
   styleUrls: ['./member-post.component.css']
@@ -32,10 +32,9 @@ export class MemberPostComponent implements OnInit {
   }
 
   getBlogByUsername(){
-
     this.blogService.getBlogByUserName(this.member.username).subscribe(blog => {
       this.blogs = blog;
-      console.log("Day laf ben getBlogUSER",this.username);
+      console.log("Day laf ben getBlogUSER", this.blogs);
     })
   }
 }
