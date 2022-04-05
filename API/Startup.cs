@@ -68,7 +68,7 @@ namespace API
             app.UseCors(x => x.AllowAnyHeader()
                 .AllowAnyMethod()
                 .AllowCredentials()
-                .WithOrigins("https://localhost:4200"));
+                .WithOrigins("https://localhost:4200", "https://accounts.google.com"));
 
             app.UseAuthentication();
 
